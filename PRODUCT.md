@@ -8,7 +8,7 @@ web
 
 ## Stack
 
-Proposed, not yet confirmed: Next.js with Payload CMS (an admin panel covering the brief's dashboard: content, training programs and sessions, registrations, inquiries), public pages statically generated. Open with the client: whether they expect WordPress. Design milestones 1–3 do not depend on this. Hosting and preview deploys are deferred for now.
+Confirmed by the user: Next.js (App Router), Tailwind CSS and shadcn/ui, in TypeScript. The admin (milestone 4) is proposed as Payload CMS inside the same Next.js app; open with the client whether they expect WordPress. Hosting and preview deploys are deferred for now.
 
 ## Users
 

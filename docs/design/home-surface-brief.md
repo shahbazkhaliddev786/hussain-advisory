@@ -11,11 +11,11 @@ Scope: the PASA homepage (Persuade) and Knowledge Hub reading pages (Read). Prod
 
 The rut is the corporate consulting template: navy header, laptop or handshake stock photo, a grid of icon cards, a strip of funder logos, a testimonial slider. Its predictable opposites, a trendy startup gloss or a cream-and-serif editorial page, are ruts too. The three directions differ in what leads the first viewport.
 
-| | Leads with | World | Risk |
-|---|---|---|---|
-| **A. The procurement line** (recommended) | the process | The cycle drawn as one line through the site; bidding-document rigor; navy field, yellow "you are here" leaf | Must keep stage copy tight or the hero reads like a training slide |
-| **B. The workbook** | the knowledge | A well-made training handout: margin notes, key-term definitions, highlighter yellow, a hyper-legible face | Can feel like e-learning; less gravitas for advisory buyers |
-| **C. Institutional, done properly** | the person | The category standard at full craft: portrait-led, serif headlines, leaf-shaped portrait frame | Familiar; depends on the photograph |
+|                                           | Leads with    | World                                                                                                        | Risk                                                               |
+| ----------------------------------------- | ------------- | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------ |
+| **A. The procurement line** (recommended) | the process   | The cycle drawn as one line through the site; bidding-document rigor; navy field, yellow "you are here" leaf | Must keep stage copy tight or the hero reads like a training slide |
+| **B. The workbook**                       | the knowledge | A well-made training handout: margin notes, key-term definitions, highlighter yellow, a hyper-legible face   | Can feel like e-learning; less gravitas for advisory buyers        |
+| **C. Institutional, done properly**       | the person    | The category standard at full craft: portrait-led, serif headlines, leaf-shaped portrait frame               | Familiar; depends on the photograph                                |
 
 ## Direction contract (A, proposed)
 

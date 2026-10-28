@@ -1,0 +1,8 @@
+.next
+node_modules
+package-lock.json
+docs/brief
+docs/design/directions
+.claude
+brand
+public

@@ -1,0 +1,185 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+/*
+ * PASA design tokens (Direction A: the procurement line).
+ * Brand colours come from the logo: navy wordmark, blue, light-blue and yellow leaves.
+ * Every text pairing below passes WCAG AA; leaf yellow and sky are for fills and graphics.
+ */
+@theme {
+  --color-navy: #0b3459;
+  --color-navy-700: #14457a;
+  --color-navy-600: #1c4b7e;
+  --color-leaf: #fcde7e;
+  --color-leaf-light: #ffe89e;
+  --color-link: #2659a3;
+  --color-sky: #72aee4;
+  --color-mist: #f2f5f9;
+  --color-haze: #dce6f2;
+  --color-hairline: #d3dce7;
+  --color-rule: #c5d0de;
+  --color-ink-2: #24384f;
+  --color-ink-3: #1c3049;
+  --color-subtle: #4a5d75;
+  --color-soft: #c2d3e9;
+
+  --ease-out-strong: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+/* shadcn/ui semantic tokens, mapped onto the PASA palette */
+@theme inline {
+  --font-sans: var(--font-archivo), "Helvetica Neue", Arial, sans-serif;
+  --font-serif: var(--font-source-serif), Georgia, serif;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --radius-sm: 2px;
+  --radius-md: 2px;
+  --radius-lg: 4px;
+  --radius-xl: 6px;
+}
+
+:root {
+  color-scheme: light;
+  --background: #ffffff;
+  --foreground: #0b3459;
+  --card: #ffffff;
+  --card-foreground: #0b3459;
+  --popover: #ffffff;
+  --popover-foreground: #0b3459;
+  --primary: #0b3459;
+  --primary-foreground: #ffffff;
+  --secondary: #f2f5f9;
+  --secondary-foreground: #0b3459;
+  --muted: #f2f5f9;
+  --muted-foreground: #4a5d75;
+  --accent: #e8eef6;
+  --accent-foreground: #0b3459;
+  --destructive: #b42318;
+  --border: #d3dce7;
+  --input: #c5d0de;
+  --ring: #2659a3;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-padding-top: 6rem;
+  }
+
+  body {
+    @apply bg-background font-sans text-foreground antialiased;
+    font-size: 17px;
+    line-height: 1.55;
+  }
+
+  ::selection {
+    background: var(--color-leaf);
+    color: var(--color-navy);
+  }
+
+  /* Links read as links: underlined and blue unless a component opts out. */
+  a {
+    color: var(--color-link);
+    text-decoration-line: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.22em;
+  }
+
+  a:hover {
+    text-decoration-thickness: 2px;
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--color-link);
+    outline-offset: 3px;
+  }
+
+  input,
+  textarea {
+    caret-color: var(--color-navy);
+  }
+}
+
+/* Type roles. Headings use Archivo's width axis for the document-cover voice. */
+@utility type-display {
+  font-size: clamp(2.375rem, 4.7vw, 4.25rem);
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  font-weight: 760;
+  font-stretch: 116%;
+  text-wrap: balance;
+}
+
+@utility type-h2 {
+  font-size: clamp(2.125rem, 3.6vw, 3.25rem);
+  line-height: 1.04;
+  letter-spacing: -0.018em;
+  font-weight: 740;
+  font-stretch: 112%;
+  text-wrap: balance;
+}
+
+@utility type-h3 {
+  font-size: 1.625rem;
+  line-height: 1.15;
+  font-weight: 720;
+  font-stretch: 112%;
+}
+
+@utility type-lead {
+  font-size: 1.1875rem;
+  line-height: 1.55;
+  text-wrap: pretty;
+}
+
+@utility type-numeral {
+  font-weight: 650;
+  font-stretch: 125%;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Reading column for Knowledge Hub pages */
+@utility type-reading {
+  font-family: var(--font-serif);
+  font-size: 1.1875rem;
+  line-height: 1.7;
+  text-wrap: pretty;
+}
+
+/* The logo's yellow leaf: the single "you are here" marker across the site. */
+@utility leaf {
+  border-radius: 100% 0 100% 0;
+  background: var(--color-leaf);
+}
+
+/* Container with the site's measure and side gutters */
+@utility container-page {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 80rem;
+  margin-inline: auto;
+  padding-inline: clamp(1.25rem, 4vw, 3rem);
+}
