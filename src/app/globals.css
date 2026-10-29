@@ -1,0 +1,135 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+/*
+ * PASA design tokens: a light, premium product-page look built from the logo's colours.
+ * Navy for headings, slate for body text, brand blues for actions and accents,
+ * the logo's yellow for warmth. Text pairings pass WCAG AA.
+ */
+@theme {
+  --color-navy: #0b3459;
+  --color-body: #425466;
+  --color-muted: #5b6b80;
+  --color-line: #e3e8ee;
+  --color-surface: #f6f9fc;
+
+  --color-brand-50: #eff5fd;
+  --color-brand-100: #dce9fa;
+  --color-brand-200: #bcd5f5;
+  --color-brand-300: #8fb8ec;
+  --color-brand-400: #548ad2;
+  --color-brand-500: #3a6fc4;
+  --color-brand-600: #2c5fb0;
+  --color-brand-700: #234c8f;
+  --color-sky: #72aee4;
+  --color-leaf: #fcde7e;
+
+  --ease-out-strong: cubic-bezier(0.23, 1, 0.32, 1);
+
+  --animate-float: float 8s ease-in-out infinite;
+  --animate-float-late: float 8s ease-in-out 2.5s infinite;
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+}
+
+/* shadcn/ui semantic tokens, mapped onto the PASA palette */
+@theme inline {
+  --font-sans: var(--font-geist), ui-sans-serif, system-ui, sans-serif;
+
+  --color-background: #ffffff;
+  --color-foreground: #0b3459;
+  --color-primary: #2c5fb0;
+  --color-primary-foreground: #ffffff;
+  --color-muted-foreground: #5b6b80;
+  --color-accent: #eff5fd;
+  --color-accent-foreground: #0b3459;
+  --color-border: #e3e8ee;
+  --color-input: #8494a9;
+  --color-ring: #3a6fc4;
+  --color-destructive: #b42318;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+    scroll-padding-top: 6rem;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
+  body {
+    @apply bg-background font-sans text-body antialiased;
+    font-size: 16px;
+    line-height: 1.6;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background: var(--color-brand-100);
+    color: var(--color-navy);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-brand-500);
+    outline-offset: 3px;
+  }
+}
+
+/* Large headings: tight, confident, balanced */
+@utility type-display {
+  font-size: clamp(2.75rem, 6.4vw, 4.5rem);
+  line-height: 1.02;
+  letter-spacing: -0.045em;
+  font-weight: 600;
+  text-wrap: balance;
+}
+
+@utility type-title {
+  font-size: clamp(2.125rem, 4.2vw, 3.25rem);
+  line-height: 1.08;
+  letter-spacing: -0.035em;
+  font-weight: 600;
+  text-wrap: balance;
+}
+
+/* Blue gradient for one key phrase per view. Every stop keeps 3:1 against white for large text. */
+@utility text-gradient {
+  background-image: linear-gradient(100deg, #234c8f 0%, #2f6fc7 45%, #3f86d9 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Card surface: hairline border and a soft, layered shadow */
+@utility card {
+  border: 1px solid var(--color-line);
+  background: #ffffff;
+  box-shadow:
+    0 1px 2px rgb(16 40 80 / 0.04),
+    0 12px 32px -16px rgb(16 40 80 / 0.16);
+}
+
+/* Gradient border in the logo's colours, for the one featured card */
+@utility border-gradient {
+  border: 1.5px solid transparent;
+  background:
+    linear-gradient(#ffffff, #ffffff) padding-box,
+    linear-gradient(135deg, #548ad2, #72aee4 50%, #fcde7e) border-box;
+}

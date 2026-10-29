@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Proposed site structure</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&display=swap">
+<style>
+body{margin:0;background:#FFFFFF}
+a{color:#2659A3}
+</style>
+</helmet>
+<div style="width: 1440px; box-sizing: border-box; padding: 64px; font-family: 'Archivo', 'Helvetica Neue', Arial, sans-serif; color: #0B3459; background: #FFFFFF; font-size: 15.5px; line-height: 1.45; -webkit-font-smoothing: antialiased">
+<h1 style="margin: 0; font-size: 40px; line-height: 1.05; font-weight: 760; font-stretch: 116%; letter-spacing: -0.02em">Proposed site structure</h1>
+<p style="margin: 14px 0 0; max-width: 78ch; font-size: 18px; color: #4A5D75">One list of services, used in the menu, on the homepage, in the contact form and in the admin. Everything below launches together except Media, which follows after launch.</p>
+
+<div style="margin-top: 40px; display: flex; flex-wrap: wrap; align-items: center; gap: 12px 28px; padding: 16px 24px; border: 1px solid #D3DCE7; background: #F2F5F9">
+<span style="font-weight: 800; font-size: 18px; font-stretch: 112%">PASA</span>
+<span style="font-size: 14px; color: #4A5D75">The logo links home</span>
+<span style="flex: 1 1 auto"></span>
+<span style="font-weight: 650">About</span><span style="font-weight: 650">Services</span><span style="font-weight: 650">Training</span><span style="font-weight: 650">Knowledge Hub</span><span style="font-weight: 650">Expertise</span><span style="font-weight: 650">Contact</span>
+<span style="display: inline-flex; align-items: center; min-height: 40px; padding: 0 16px; background: #0B3459; color: #FFFFFF; font-weight: 620; border-radius: 2px">Request advisory support</span>
+</div>
+
+<div style="margin-top: 32px; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 28px">
+<section>
+<h2 style="margin: 0; padding-bottom: 10px; border-bottom: 2px solid #0B3459; font-size: 18px; font-weight: 720; font-stretch: 108%">About</h2>
+<ul style="list-style: none; margin: 0; padding: 0">
+<li style="padding: 10px 0; border-bottom: 1px solid #D3DCE7">About PASA</li>
+<li style="padding: 10px 0; border-bottom: 1px solid #D3DCE7">Meet the advisor</li>
+<li style="padding: 10px 0; border-bottom: 1px solid #D3DCE7">Vision, mission and values</li>
+<li style="padding: 10px 0; border-bottom: 1px solid #D3DCE7">Experience</li>
+</ul>
+</section>
+<section>
+<h2 style="margin: 0; padding-bottom: 10px; border-bottom: 2px solid #0B3459; font-size: 18px; font-weight: 720; font-stretch: 108%">Services</h2>
+<ul style="list-style: none; margin: 0; padding: 0">
+<li style="padding: 10px 0; border-bottom: 1px solid #D3DCE7">Procurement advisory<span style="display: block; font-size: 13.5px; color: #4A5D75">Plan</span></li>
+<li style="padding: 10px 0; border-bottom: 1px solid #D3DCE7">Bidding and tender support<span style="display: block; font-size: 13.5px; color: #4A5D75">Bid</span></li>
+<li style="padding: 10px 0; border-bottom: 1px solid #D3DCE7">Bid evaluation support<span style="display: block; font-size: 13.5px; color: #4A5D75">Evaluate</span></li>
+<li style="padding: 10px 0; border-bottom: 1px solid #D3DCE7">Contract management<span style="display: block; font-size: 13.5px; color: #4A5D75">Award, manage and close</span></li>
+<li style="padding: 10px 0; border-bottom: 1px solid #D3DCE7">Capacity development<span style="display: block; font-size: 13.5px; color: #4A5D75">Every stage</span></li>
+<li style="padding: 10px 0; border-bottom: 1px solid #D3DCE7">Mentoring<span style="display: block; font-size: 13.5px; color: #4A5D75">Every stage</span></li>
+</ul>
+</section>
+<section>
+<h2 style="margin: 0; padding-bottom: 10px; border-bottom: 2px solid #0B3459; font-size: 18px; font-weight: 720; font-stretch: 108%">Training</h2>
+<ul style="list-style: none; margin: 0; padding: 0">
+<li style="padding: 10px 0; border-bottom: 1px solid #D3DCE7">Training programs</li>
+<li style="padding: 10px 0; border-bottom: 1px solid #D3DCE7">Beginner programs</li>
+<li style="padding: 10px 0; border-bottom: 1px solid #D3DCE7">Professional programs<span style="display: block; font-size: 13.5px; color: #4A5D75">As programs are added</span></li>
+<li style="padding: 10px 0; border-bottom: 1px solid #D3DCE7">Customized training</li>
+<li style="padding: 10px 0; border-bottom: 1px solid #D3DCE7">Upcoming training</li>
+</ul>
+<p style="margin: 14px 0 0; font-size: 14px; line-height: 1.5; color: #4A5D75">Each program page: overview, objectives, who should attend, topics, trainer, duration, delivery, fee, dates, venue, register.</p>
+</section>
+<section>
+<h2 style="margin: 0; padding-bottom: 10px; border-bottom: 2px solid #0B3459; font-size: 18px; font-weight: 720; font-stretch: 108%">Knowledge Hub</h2>
+<ul style="list-style: none; margin: 0; padding: 0">
+<li style="padding: 10px 0; border-bottom: 1px solid #D3DCE7">Procurement basics</li>
+<li style="padding: 10px 0; border-bottom: 1px solid #D3DCE7">Procurement planning</li>
+<li style="padding: 10px 0; border-bottom: 1px solid #D3DCE7">Procurement methods<span style="display: block; font-size: 13.5px; color: #2659A3; font-weight: 600">Added to the menu</span></li>
+<li style="padding: 10px 0; border-bottom: 1px solid #D3DCE7">Bidding and tendering</li>
+<li style="padding: 10px 0; border-bottom: 1px solid #D3DCE7">Bid evaluation</li>
+<li style="padding: 10px 0; border-bottom: 1px solid #D3DCE7">Contract management</li>
+<li style="padding: 10px 0; border-bottom: 1px solid #D3DCE7">Procurement Dictionary</li>
+<li style="padding: 10px 0; border-bottom: 1px solid #D3DCE7">Articles and insights</li>
+<li style="padding: 10px 0; border-bottom: 1px solid #D3DCE7">Case studies</li>
+<li style="padding: 10px 0; border-bottom: 1px solid #D3DCE7">Resources and downloads</li>
+<li style="padding: 10px 0; border-bottom: 1px solid #D3DCE7">Ask PASA<span style="display: block; font-size: 13.5px; color: #2659A3; font-weight: 600">Added to the menu</span></li>
+</ul>
+</section>
+<section>
+<h2 style="margin: 0; padding-bottom: 10px; border-bottom: 2px solid #0B3459; font-size: 18px; font-weight: 720; font-stretch: 108%">Expertise</h2>
+<ul style="list-style: none; margin: 0; padding: 0">
+<li style="padding: 10px 0; border-bottom: 1px solid #D3DCE7">Development partner procurement<span style="display: block; font-size: 13.5px; color: #4A5D75">World Bank, ADB, IFAD, AFD and other development partners</span></li>
+<li style="padding: 10px 0; border-bottom: 1px solid #D3DCE7">Sectors<span style="display: block; font-size: 13.5px; color: #4A5D75">Energy, transport, urban infrastructure, agriculture, natural resources, community development, emergency response</span></li>
+</ul>
+</section>
+<section>
+<h2 style="margin: 0; padding-bottom: 10px; border-bottom: 2px solid #0B3459; font-size: 18px; font-weight: 720; font-stretch: 108%">Contact</h2>
+<ul style="list-style: none; margin: 0; padding: 0">
+<li style="padding: 10px 0; border-bottom: 1px solid #D3DCE7">One inquiry form<span style="display: block; font-size: 13.5px; color: #4A5D75">“I am interested in” uses the same six services, plus training and other</span></li>
+<li style="padding: 10px 0; border-bottom: 1px solid #D3DCE7">Request advisory support<span style="display: block; font-size: 13.5px; color: #4A5D75">Opens the form with advisory selected</span></li>
+<li style="padding: 10px 0; border-bottom: 1px solid #D3DCE7">advisorpasa@gmail.com</li>
+</ul>
+<h2 style="margin: 32px 0 0; padding-bottom: 10px; border-bottom: 2px solid #8A9AB0; font-size: 18px; font-weight: 720; font-stretch: 108%; color: #4A5D75">After launch: Media</h2>
+<ul style="list-style: none; margin: 0; padding: 0; color: #4A5D75">
+<li style="padding: 10px 0; border-bottom: 1px solid #D3DCE7">News and updates</li>
+<li style="padding: 10px 0; border-bottom: 1px solid #D3DCE7">Events</li>
+<li style="padding: 10px 0; border-bottom: 1px solid #D3DCE7">Videos</li>
+</ul>
+</section>
+</div>
+
+<section style="margin-top: 48px; padding-top: 28px; border-top: 1px solid #D3DCE7">
+<h2 style="margin: 0; font-size: 18px; font-weight: 720; font-stretch: 108%">Homepage, in order</h2>
+<ol style="margin: 16px 0 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); gap: 12px">
+<li style="border-top: 2px solid #0B3459; padding-top: 10px"><span style="display: block; font-size: 13px; font-weight: 650; color: #4A5D75; font-variant-numeric: tabular-nums">1</span>Hero and the procurement cycle</li>
+<li style="border-top: 2px solid #0B3459; padding-top: 10px"><span style="display: block; font-size: 13px; font-weight: 650; color: #4A5D75; font-variant-numeric: tabular-nums">2</span>What PASA does</li>
+<li style="border-top: 2px solid #0B3459; padding-top: 10px"><span style="display: block; font-size: 13px; font-weight: 650; color: #4A5D75; font-variant-numeric: tabular-nums">3</span>About PASA</li>
+<li style="border-top: 2px solid #0B3459; padding-top: 10px"><span style="display: block; font-size: 13px; font-weight: 650; color: #4A5D75; font-variant-numeric: tabular-nums">4</span>Meet the advisor</li>
+<li style="border-top: 2px solid #0B3459; padding-top: 10px"><span style="display: block; font-size: 13px; font-weight: 650; color: #4A5D75; font-variant-numeric: tabular-nums">5</span>Experience</li>
+<li style="border-top: 2px solid #0B3459; padding-top: 10px"><span style="display: block; font-size: 13px; font-weight: 650; color: #4A5D75; font-variant-numeric: tabular-nums">6</span>Latest from the Knowledge Hub</li>
+<li style="border-top: 2px solid #0B3459; padding-top: 10px"><span style="display: block; font-size: 13px; font-weight: 650; color: #4A5D75; font-variant-numeric: tabular-nums">7</span>Upcoming training</li>
+<li style="border-top: 2px solid #0B3459; padding-top: 10px"><span style="display: block; font-size: 13px; font-weight: 650; color: #4A5D75; font-variant-numeric: tabular-nums">8</span>Talk to PASA</li>
+</ol>
+</section>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1132}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {};
+  }
+}
+</script>
+</body>
+</html>
