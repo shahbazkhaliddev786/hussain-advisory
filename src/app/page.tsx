@@ -1,22 +1,23 @@
-import { AboutAndAdvisor } from "@/components/home/about-advisor"
-import { ClosingCta } from "@/components/home/closing-cta"
-import { Experience } from "@/components/home/experience"
-import { Hero } from "@/components/home/hero"
-import { KnowledgeLatest } from "@/components/home/knowledge-latest"
-import { UpcomingTraining } from "@/components/home/upcoming-training"
-import { WhatPasaDoes } from "@/components/home/what-pasa-does"
+import { About } from "@/components/landing/about"
+import { Approach } from "@/components/landing/approach"
+import { Contact } from "@/components/landing/contact"
+import { Faq } from "@/components/landing/faq"
+import { Financiers } from "@/components/landing/financiers"
+import { Hero } from "@/components/landing/hero"
+import { Services } from "@/components/landing/services"
+import { Training } from "@/components/landing/training"
 
-/** Homepage, in the brief's order. */
-export default function HomePage() {
+export default function LandingPage() {
   return (
     <>
       <Hero />
-      <WhatPasaDoes />
-      <AboutAndAdvisor />
-      <Experience />
-      <KnowledgeLatest />
-      <UpcomingTraining />
-      <ClosingCta />
+      <Financiers />
+      <Services />
+      <Approach />
+      <About />
+      <Training />
+      <Faq />
+      <Contact />
     </>
   )
 }

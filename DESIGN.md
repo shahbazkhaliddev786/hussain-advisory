@@ -1,66 +1,66 @@
 # Design system
 
-Direction A, "the procurement line", as built in `src/`. Tokens live in `src/app/globals.css`; this file explains how to use them.
+A light, premium product-page style (in the spirit of Stripe), built from the PASA logo's colours. Tokens live in `src/app/globals.css`; this file explains how to use them.
 
 ## Principles
 
-1. **The procurement cycle is the map.** Plan, bid, evaluate, award, manage, close. Services, training and Knowledge Hub content all say where they sit in it.
-2. **The yellow leaf marks where you are.** The logo's yellow leaf is the only "you are here" marker: the selected stage, the current letter in the dictionary, the current page. It is never decoration.
-3. **Authority through type, not ornament.** Wide Archivo headings carry the voice. No stock imagery, icon-card grids, gradients or logo strips.
-4. **Plain words, exact claims.** Copy follows the wording rules in `PRODUCT.md`. Missing facts stay as visible `[placeholders]`.
+1. **Premium, not plain.** Soft gradient glows, layered rounded cards, pill labels and smooth motion, kept crafted rather than loud.
+2. **The procurement cycle is the story.** Plan, bid, evaluate, award, manage, close: the hero shows it, the Approach section explains it.
+3. **Real facts only.** 30+ years, two decades of training, the financier list with its disclaimer. No invented testimonials, clients or statistics.
+4. **Readable for everyone.** Every text pairing passes WCAG AA; motion respects reduced-motion settings.
 
 ## Colour
 
-| Token               | Hex               | Use                                                               |
-| ------------------- | ----------------- | ----------------------------------------------------------------- |
-| `navy`              | #0B3459           | Text, headings, primary buttons, hero and closing bands           |
-| `navy-700`          | #14457A           | Hover on navy buttons                                             |
-| `navy-600`          | #1C4B7E           | Raised surfaces on navy (portrait placeholder)                    |
-| `leaf`              | #FCDE7E           | You-are-here marker; main action on navy                          |
-| `link`              | #2659A3           | Links and focus rings on light grounds                            |
-| `sky`               | #72AEE4           | The cycle line and stage numbers on navy (graphics only on white) |
-| `mist`              | #F2F5F9           | Alternate section bands                                           |
-| `hairline` / `rule` | #D3DCE7 / #C5D0DE | Dividers                                                          |
-| `subtle`            | #4A5D75           | Secondary text on light grounds                                   |
-| `soft`              | #C2D3E9           | Secondary text on navy                                            |
-| `ink-2` / `ink-3`   | #24384F / #1C3049 | Body text where pure navy is too heavy                            |
+| Token              | Hex               | Use                                                     |
+| ------------------ | ----------------- | ------------------------------------------------------- |
+| `navy`             | #0B3459           | Headings, the training and contact dark surfaces        |
+| `body`             | #425466           | Body text (7.8:1 on white)                              |
+| `muted`            | #5B6B80           | Secondary text (5.4:1 on white)                         |
+| `brand-50…700`     | #EFF5FD … #234C8F | Actions, icons, accents; the logo blue is `brand-400`   |
+| `sky`              | #72AEE4           | Glows and illustration accents                          |
+| `leaf`             | #FCDE7E           | Warm accents in glows, chips and the contact checkmarks |
+| `surface` / `line` | #F6F9FC / #E3E8EE | Alternate section background / hairline borders         |
+| `input`            | #8494A9           | Form field borders (3:1 on white)                       |
 
-Every text pairing passes WCAG AA (navy on white 12.7:1, soft on navy 8.4:1, leaf on navy 9.6:1, subtle on white 6.7:1). Leaf yellow and sky never carry text on white.
+The primary button is a blue gradient (#3A6FC4 to #2A5AA8, white text at 4.9:1 or better). Gradient headline text stays within blues that keep 3:1 for large text.
 
 ## Typography
 
-| Role                 | Utility                       | Spec                                              |
-| -------------------- | ----------------------------- | ------------------------------------------------- |
-| Display (h1)         | `type-display`                | Archivo 760, 116% wide, 38–68px, tracking −0.02em |
-| Section heading (h2) | `type-h2`                     | Archivo 740, 112% wide, 34–52px                   |
-| Item heading (h3)    | `type-h3`                     | Archivo 720, 112% wide, 26px                      |
-| Lead paragraph       | `type-lead`                   | Archivo 400, 19px / 1.55                          |
-| Body                 | default                       | Archivo 400, 17px / 1.55                          |
-| Stage numerals       | `type-numeral`                | Archivo 650, 125% wide, tabular figures           |
-| Reading text         | `type-reading` / `font-serif` | Source Serif 4, 19px / 1.7, 60–75 characters      |
+Geist throughout. Headings are semibold with tight tracking.
 
-Sentence case everywhere, including buttons. No all-caps labels and no small labels above headings.
+| Role          | Utility        | Spec                                   |
+| ------------- | -------------- | -------------------------------------- |
+| Hero headline | `type-display` | 44–72px, tracking −0.045em, weight 600 |
+| Section title | `type-title`   | 34–52px, tracking −0.035em, weight 600 |
+| Card title    | `text-xl`      | 20px, tracking tight, weight 600       |
+| Body          | default        | 16px / 1.6, `text-body`                |
+| Lead          | `text-lg`      | 18–20px / relaxed                      |
 
-## Layout
+Sentence case everywhere, including buttons.
 
-- `container-page`: 80rem maximum, 20–48px gutters.
-- Section rhythm: 72px (phone) to 120px (wide) vertical padding. More space above a heading than below it.
-- Bands alternate white, mist and navy. Navy is reserved for the hero and the closing call to action.
-- Corners are near-square (2px). The leaf shape, two rounded opposite corners, is used only for the marker and the portrait frame.
+## Surfaces and layout
+
+- Content width `max-w-6xl` (72rem) with 24px side padding.
+- Sections alternate white and `surface`, with navy for the training card and the contact section. Section padding is 96–128px.
+- `card`: white, hairline border, soft layered shadow; cards are `rounded-2xl` or `rounded-3xl` and lift slightly on hover.
+- `border-gradient`: the logo's blue, sky and yellow as a border, used once (the featured training card).
+- Section headings: a pill label, a centered title, and an intro paragraph.
 
 ## Components
 
-- **Buttons** (`components/ui/button.tsx`): `default` (navy), `outline`, `leaf` (yellow, on navy only), `outline-inverse` (on navy), `ghost`, `link`. Minimum height 44px. Press feedback scales to 0.97.
-- **Links**: underlined link blue by default. Opt out only for navigation, titles and buttons.
-- **Procurement cycle** (`components/home/procurement-cycle.tsx`): tabs along a line on wide screens, an expanding timeline on narrow screens, one shared selection. Arrow keys move between stages.
-- **Stage coverage** (`components/pasa/stage-coverage.tsx`): six segments plus a caption naming the stages.
-- **Portrait** (`components/pasa/portrait.tsx`): leaf-cut frame with a labelled placeholder until the photograph arrives.
-- **Navigation**: shadcn NavigationMenu on wide screens (dropdowns under their trigger), Sheet with an accordion below 1280px.
+- **Navbar** (`landing/navbar.tsx`): floating, transparent at the top, frosted glass after scrolling. Phones get a dropdown panel (Escape and outside taps close it).
+- **Hero** (`landing/hero.tsx`): a soft gradient glow over a faint grid, the headline in two lines with the second in gradient text, and the procurement-cycle card with floating detail chips.
+- **Services** (`landing/services.tsx`): a bento grid; the two wide cards carry small illustrations.
+- **Approach** (`landing/approach.tsx`): Radix tabs for the six stages; arrow keys move between them.
+- **About**, **Training**, **FAQ** (native `<details>`, one open at a time), **Contact** (navy section with the form card), **Footer**.
 
 ## Motion
 
-One authored moment per page: the leaf grows into place when a stage is selected (260ms, `ease-out-strong`). Menus open in 150–300ms with ease-out. Hover effects only on devices that hover. `prefers-reduced-motion` removes movement.
+- Hero: badge, buttons and the cycle card fade up on load. The headline and intro do not animate, so they paint immediately.
+- Sections below the fold fade up once as they enter the viewport (`landing/reveal.tsx`). Content is visible without JavaScript.
+- Hover: cards lift 1–4px, arrows nudge 2px. Floating chips drift slowly.
+- `prefers-reduced-motion` turns off movement and smooth scrolling.
 
 ## Accessibility
 
-WCAG 2.2 AA. Visible focus on every control (link blue, leaf on navy). Skip link. Real buttons, links and headings in order. Targets at least 44px for primary controls. Verified with axe (0 violations) and Lighthouse (accessibility 100).
+WCAG 2.2 AA. Visible focus rings, a skip link, real headings in order, labelled form fields with linked error messages, focus moved to the first error. Verified with axe (0 violations, desktop and phone) and Lighthouse (accessibility 100).

@@ -8,7 +8,7 @@ web
 
 ## Stack
 
-Confirmed by the user: Next.js (App Router), Tailwind CSS and shadcn/ui, in TypeScript. The admin (milestone 4) is proposed as Payload CMS inside the same Next.js app; open with the client whether they expect WordPress. Hosting and preview deploys are deferred for now.
+Confirmed by the user: Next.js (App Router), Tailwind CSS and shadcn/ui, in TypeScript. The site is a single landing page (the user's decision: a portfolio site, not a content platform). Hosting and preview deploys are deferred for now.
 
 ## Users
 
@@ -34,7 +34,7 @@ PASA is the practice of one senior practitioner, Naeem Abbas: more than 30 years
 
 ## Capabilities and Constraints
 
-- Launch scope ("Phase 1" in the brief): Home, About, Services, Training, Knowledge Hub, Expertise, Contact, with 8–12 beginner articles or resources ready before launch. Later: Media (news, events, videos), newsletter, participant accounts, certificates, larger resource libraries.
+- Launch scope, as decided by the user: one landing page with hero, services, the procurement cycle, about Naeem, training, FAQ and a contact form. The brief's larger sitemap (inner pages, Knowledge Hub, dictionary) was built once and set aside (closed PR #2); it can return later if PASA wants a content site.
 - Homepage, in order: hero; what PASA does; about PASA; meet the advisor; experience; latest three Knowledge Hub resources; upcoming training; call to action.
 - Training program pages: overview, learning objectives, who should attend, topics, trainer, duration, delivery method, fee or free, date, venue or online, register.
 - Forms: training registration (name, organization, designation, email, phone, training selected, professional background); contact inquiry (name, organization, email, phone, area of interest, message); Ask PASA questions (recommended from launch).

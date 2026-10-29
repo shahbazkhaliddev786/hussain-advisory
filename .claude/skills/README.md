@@ -17,12 +17,13 @@ Curated, vendored Claude Code skills for building the PASA site. Each folder kee
 
 ## Where they disagree, and the rule we follow
 
-1. **The brief wins.** PASA's PRODUCT.md and DESIGN.md (once written) override every skill below.
-2. **Heading and button case.** Vercel says Title Case; Anthropic and Impeccable say sentence case. We use **sentence case**. It reads as plainer and more institutional for a public-sector audience.
-3. **Scroll and entrance motion.** Emil's stagger/reveal patterns describe *how* to build motion. Anthropic and Impeccable decide *how much*: one authored moment per page, never a fade-up on every section.
-4. **Reduced motion.** Follow Emil (gentler, not zero: keep opacity, drop movement), not Addy's blanket `0.01ms` reset.
-5. **Native elements first.** Vercel's "keyboard handlers on interactive elements" means custom widgets only. Never add key handlers to a native `<button>` (Addy and ibelick agree).
-6. **React-specific rules** (hydration, Framer Motion props, `next/image`) apply only if we add React islands.
+1. **The user's direction wins.** PASA's site is a **light, premium SaaS-style landing page** (think Stripe): gradients and glows, rounded layered cards, pill labels, bento grids and tasteful motion are welcome. Use the skills for craft (contrast, accessibility, motion quality, performance), never to veto that style. An earlier, austere build that followed the skills' anti-template rules too literally was rejected as dated.
+2. **Then PRODUCT.md and DESIGN.md** override every skill below, especially the wording rules (financiers, no invented facts).
+3. **Heading and button case.** Vercel says Title Case; Anthropic and Impeccable say sentence case. We use **sentence case**.
+4. **Scroll and entrance motion.** Emil's stagger/reveal patterns describe *how* to build motion. Subtle reveals on sections below the fold are fine; never animate the opacity of the headline that is the page's largest paint (it delays LCP).
+5. **Reduced motion.** Follow Emil (gentler, not zero: keep opacity, drop movement), not Addy's blanket `0.01ms` reset.
+6. **Native elements first.** Vercel's "keyboard handlers on interactive elements" means custom widgets only. Never add key handlers to a native `<button>` (Addy and ibelick agree).
+7. **React-specific rules** (hydration, Framer Motion props, `next/image`) apply only if we add React islands.
 
 ## Not included, on purpose
 
