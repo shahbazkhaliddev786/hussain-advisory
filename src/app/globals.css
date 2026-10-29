@@ -22,6 +22,10 @@
   --color-ink-3: #1c3049;
   --color-subtle: #4a5d75;
   --color-soft: #c2d3e9;
+  /* Inactive markers and letters: graphics only, never body text */
+  --color-dim: #8a9ab0;
+  /* Form control borders: 3.5:1 on white, enough to find the field */
+  --color-field: #7a8ba3;
 
   --ease-out-strong: cubic-bezier(0.23, 1, 0.32, 1);
   --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
@@ -133,10 +137,30 @@
   text-wrap: balance;
 }
 
+/* Page title (h1) on inner pages */
+@utility type-page {
+  font-size: clamp(2.375rem, 4.4vw, 3.75rem);
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  font-weight: 760;
+  font-stretch: 116%;
+  text-wrap: balance;
+}
+
 @utility type-h2 {
   font-size: clamp(2.125rem, 3.6vw, 3.25rem);
   line-height: 1.04;
   letter-spacing: -0.018em;
+  font-weight: 740;
+  font-stretch: 112%;
+  text-wrap: balance;
+}
+
+/* Section heading (h2) on inner pages, one step below type-h2 */
+@utility type-section {
+  font-size: clamp(1.75rem, 2.6vw, 2.25rem);
+  line-height: 1.08;
+  letter-spacing: -0.012em;
   font-weight: 740;
   font-stretch: 112%;
   text-wrap: balance;

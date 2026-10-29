@@ -1,6 +1,7 @@
 "use client"
 
 import Link from "next/link"
+import { usePathname } from "next/navigation"
 import { MenuIcon, XIcon } from "lucide-react"
 
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
@@ -14,11 +15,19 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet"
 import { Logo } from "@/components/site/logo"
+import { inSection, isCurrent } from "@/components/site/nav-state"
 import { routes } from "@/content/routes"
 import { mainNav, site } from "@/content/site"
+import { cn } from "@/lib/utils"
 
-/** Menu for screens too narrow for the full header navigation. */
-export function MobileNav() {
+/**
+ * Menu for screens too narrow for the full header navigation.
+ * With a pathname, the current section starts open and the current page carries the leaf.
+ */
+export function MobileNav({ pathname }: { pathname?: string }) {
+  const currentGroup = mainNav.find((group) => inSection(group.href, pathname))?.label
+  const contactCurrent = isCurrent(routes.contact, pathname)
+
   return (
     <Sheet>
       <SheetTrigger asChild>
@@ -44,7 +53,7 @@ export function MobileNav() {
         </div>
 
         <nav aria-label="Main" className="flex-1 overflow-y-auto overscroll-contain px-5 pb-6">
-          <Accordion type="single" collapsible>
+          <Accordion type="single" collapsible defaultValue={currentGroup}>
             {mainNav.map((group) => (
               <AccordionItem key={group.label} value={group.label} className="border-hairline">
                 <AccordionTrigger className="py-4 text-[17px] font-semibold text-navy hover:no-underline [&>svg]:size-5 [&>svg]:text-navy">
@@ -57,18 +66,31 @@ export function MobileNav() {
                         <p className="pb-1 text-[13.5px] font-semibold text-subtle">{section.title}</p>
                       )}
                       <ul className="grid">
-                        {section.links.map((link) => (
-                          <li key={link.href}>
-                            <SheetClose asChild>
-                              <Link
-                                href={link.href}
-                                className="block rounded-sm py-2.5 text-[16px] text-navy no-underline hover:text-link"
-                              >
-                                {link.label}
-                              </Link>
-                            </SheetClose>
-                          </li>
-                        ))}
+                        {section.links.map((link) => {
+                          const current = isCurrent(link.href, pathname)
+                          return (
+                            <li key={link.href}>
+                              <SheetClose asChild>
+                                <Link
+                                  href={link.href}
+                                  aria-current={current ? "page" : undefined}
+                                  className={cn(
+                                    "relative block rounded-sm py-2.5 text-[16px] text-navy no-underline hover:text-link",
+                                    current && "pl-5 font-semibold",
+                                  )}
+                                >
+                                  {current && (
+                                    <span
+                                      aria-hidden="true"
+                                      className="absolute top-[17px] left-0 size-2.5 leaf"
+                                    />
+                                  )}
+                                  {link.label}
+                                </Link>
+                              </SheetClose>
+                            </li>
+                          )
+                        })}
                       </ul>
                     </div>
                   ))}
@@ -79,8 +101,15 @@ export function MobileNav() {
           <SheetClose asChild>
             <Link
               href={routes.contact}
-              className="block border-b border-hairline py-4 text-[17px] font-semibold text-navy no-underline"
+              aria-current={contactCurrent ? "page" : undefined}
+              className={cn(
+                "relative block border-b border-hairline py-4 text-[17px] font-semibold text-navy no-underline",
+                contactCurrent && "pl-5",
+              )}
             >
+              {contactCurrent && (
+                <span aria-hidden="true" className="absolute top-[23px] left-0 size-2.5 leaf" />
+              )}
               Contact
             </Link>
           </SheetClose>
@@ -99,4 +128,9 @@ export function MobileNav() {
       </SheetContent>
     </Sheet>
   )
+}
+
+/** Reads the current path, so the menu can mark where the visitor is. */
+export function MobileNavWithPath() {
+  return <MobileNav pathname={usePathname()} />
 }

@@ -1,10 +1,10 @@
 import { AboutAndAdvisor } from "@/components/home/about-advisor"
-import { ClosingCta } from "@/components/home/closing-cta"
 import { Experience } from "@/components/home/experience"
 import { Hero } from "@/components/home/hero"
 import { KnowledgeLatest } from "@/components/home/knowledge-latest"
 import { UpcomingTraining } from "@/components/home/upcoming-training"
 import { WhatPasaDoes } from "@/components/home/what-pasa-does"
+import { CtaBand } from "@/components/pasa/cta-band"
 
 /** Homepage, in the brief's order. */
 export default function HomePage() {
@@ -16,7 +16,7 @@ export default function HomePage() {
       <Experience />
       <KnowledgeLatest />
       <UpcomingTraining />
-      <ClosingCta />
+      <CtaBand />
     </>
   )
 }

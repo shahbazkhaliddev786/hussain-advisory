@@ -4,6 +4,7 @@ import { Archivo, Source_Serif_4 } from "next/font/google"
 import { SiteFooter } from "@/components/site/site-footer"
 import { SiteHeader } from "@/components/site/site-header"
 import { site } from "@/content/site"
+import { siteUrl } from "@/lib/metadata"
 import "./globals.css"
 
 // Headings use Archivo's width axis; Source Serif 4 sets Knowledge Hub reading text.
@@ -29,7 +30,7 @@ const sourceSerif = Source_Serif_4({
 export const ensureStatic = "navigation"
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"),
+  metadataBase: new URL(siteUrl),
   title: {
     default: site.fullName,
     template: "%s | PASA",

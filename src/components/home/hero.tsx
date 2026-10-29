@@ -4,7 +4,8 @@ import { Button } from "@/components/ui/button"
 import { ProcurementCycle } from "@/components/home/procurement-cycle"
 import { Portrait } from "@/components/pasa/portrait"
 import { stages } from "@/content/cycle"
-import { advisor, hero } from "@/content/home"
+import { advisor } from "@/content/about"
+import { hero } from "@/content/home"
 import { routes } from "@/content/routes"
 
 export function Hero() {

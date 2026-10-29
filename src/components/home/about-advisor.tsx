@@ -2,7 +2,7 @@ import Link from "next/link"
 
 import { Button } from "@/components/ui/button"
 import { Portrait } from "@/components/pasa/portrait"
-import { about, advisor } from "@/content/home"
+import { about, advisor, values } from "@/content/about"
 import { routes } from "@/content/routes"
 
 export function AboutAndAdvisor() {
@@ -21,9 +21,9 @@ export function AboutAndAdvisor() {
           <div className="lg:pt-2">
             <h3 className="text-[17px] font-semibold">What PASA stands for</h3>
             <ul className="mt-3.5 grid gap-x-7 sm:grid-cols-2">
-              {about.values.map((value) => (
-                <li key={value} className="border-t border-rule py-3 text-[17px] font-medium">
-                  {value}
+              {values.map((value) => (
+                <li key={value.name} className="border-t border-rule py-3 text-[17px] font-medium">
+                  {value.name}
                 </li>
               ))}
             </ul>

@@ -1,3 +1,4 @@
+import { guideLink } from "./knowledge"
 import { routes } from "./routes"
 import type { Stage, StageId } from "./types"
 
@@ -22,12 +23,9 @@ export const stages: Stage[] = [
     },
     training: { ...beginners, note: "Covers the whole cycle, starting with planning." },
     guides: [
-      { label: "Procurement plans", href: routes.guide("procurement-plans") },
-      { label: "Market analysis", href: routes.guide("market-analysis") },
-      {
-        label: "Specifications and terms of reference",
-        href: routes.guide("specifications-and-terms-of-reference"),
-      },
+      guideLink("procurement-plans"),
+      guideLink("market-analysis"),
+      guideLink("specifications-and-terms-of-reference"),
     ],
   },
   {
@@ -42,11 +40,7 @@ export const stages: Stage[] = [
       note: "Requirements, bidding documents, notices and clarifications.",
     },
     training: { ...customized, note: "Designed around your team and the rules you work under." },
-    guides: [
-      { label: "Bidding documents", href: routes.guide("bidding-documents") },
-      { label: "Pre-bid meetings", href: routes.guide("pre-bid-meetings") },
-      { label: "Clarifications", href: routes.guide("clarifications") },
-    ],
+    guides: [guideLink("bidding-documents"), guideLink("pre-bid-meetings"), guideLink("clarifications")],
   },
   {
     id: "evaluate",
@@ -60,11 +54,7 @@ export const stages: Stage[] = [
       note: "Methodology, criteria and reports, within the applicable rules.",
     },
     training: { ...customized, note: "Designed around your team and the rules you work under." },
-    guides: [
-      { label: "Responsiveness", href: routes.guide("responsiveness") },
-      { label: "Qualification", href: routes.guide("qualification") },
-      { label: "Evaluation reports", href: routes.guide("evaluation-reports") },
-    ],
+    guides: [guideLink("responsiveness"), guideLink("qualification"), guideLink("evaluation-reports")],
   },
   {
     id: "award",
@@ -78,10 +68,7 @@ export const stages: Stage[] = [
       note: "Award, commencement and setting up the contract to succeed.",
     },
     training: { ...beginners, note: "Covers the whole cycle, including award." },
-    guides: [
-      { label: "Contract award", href: routes.guide("contract-award") },
-      { label: "Contract commencement", href: routes.guide("contract-commencement") },
-    ],
+    guides: [guideLink("contract-award"), guideLink("contract-commencement")],
   },
   {
     id: "manage",
@@ -95,11 +82,7 @@ export const stages: Stage[] = [
       note: "Administration, performance, variations, claims and payments.",
     },
     training: { ...customized, note: "Designed around your team and the rules you work under." },
-    guides: [
-      { label: "Performance monitoring", href: routes.guide("performance-monitoring") },
-      { label: "Variations", href: routes.guide("variations") },
-      { label: "Delays", href: routes.guide("delays") },
-    ],
+    guides: [guideLink("performance-monitoring"), guideLink("variations"), guideLink("delays")],
   },
   {
     id: "close",
@@ -113,10 +96,7 @@ export const stages: Stage[] = [
       note: "Completion, handover and contract closure.",
     },
     training: { ...beginners, note: "Covers the whole cycle, through to closure." },
-    guides: [
-      { label: "Contract closure", href: routes.guide("contract-closure") },
-      { label: "Disputes", href: routes.guide("disputes") },
-    ],
+    guides: [guideLink("contract-closure"), guideLink("disputes")],
   },
 ]
 
