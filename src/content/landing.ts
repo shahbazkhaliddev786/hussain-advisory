@@ -25,8 +25,8 @@ export const nav = [
 
 export const hero = {
   badge: "30+ years in public procurement",
-  title: "Strengthening procurement.",
-  highlight: "Delivering better results.",
+  title: "Strengthening Procurement.",
+  highlight: "Delivering Better Results.",
   intro:
     "PASA is the procurement advisory, training and mentoring practice of Naeem Abbas. Practical support across the whole procurement cycle, and training that builds lasting capacity.",
   audiences: ["Government departments", "Development projects", "NGOs and procurement teams"],
@@ -43,32 +43,32 @@ export type ServiceIcon = "compass" | "file" | "scale" | "clipboard" | "growth" 
 export const services: { name: string; text: string; points: string[]; icon: ServiceIcon; note?: string }[] =
   [
     {
-      name: "Procurement advisory",
+      name: "Procurement Advisory",
       text: "Professional guidance across the procurement cycle, from the first plan to the final review.",
       points: ["Strategy", "Planning", "Process support", "Documentation", "Reviews", "Problem-solving"],
       icon: "compass",
     },
     {
-      name: "Bidding and tender support",
+      name: "Bidding and Tender Support",
       text: "Clear requirements and bidding documents, correct notices and fair clarifications.",
       points: ["Specifications", "Bidding documents", "Notices", "Clarifications"],
       icon: "file",
     },
     {
-      name: "Bid evaluation support",
+      name: "Bid Evaluation Support",
       text: "A sound methodology, criteria applied exactly as published, and a complete evaluation report.",
       points: ["Methodology", "Criteria", "Process", "Reports"],
       icon: "scale",
       note: "Only where PASA is independent of every bidder, within the applicable rules.",
     },
     {
-      name: "Contract management",
+      name: "Contract Management",
       text: "Much of a contract’s value is won or lost after signing. Support from award to closure.",
       points: ["Administration", "Milestones", "Variations", "Claims", "Payments", "Closure"],
       icon: "clipboard",
     },
     {
-      name: "Capacity development",
+      name: "Capacity Development",
       text: "Procurement capacity assessments, training needs and customized capacity-building programs.",
       points: ["Assessments", "Training needs", "Custom programs"],
       icon: "growth",
