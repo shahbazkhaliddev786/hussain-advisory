@@ -1,4 +1,4 @@
-import { CheckIcon, MailIcon } from "lucide-react"
+import { CheckIcon, MailIcon, MessageCircleIcon, type LucideIcon } from "lucide-react"
 
 import { ContactForm } from "@/components/landing/contact-form"
 import { Reveal } from "@/components/landing/reveal"
@@ -34,18 +34,20 @@ export function Contact() {
             tone="dark"
           />
 
-          <a
-            href={`mailto:${site.email}`}
-            className="mt-10 flex max-w-sm items-center gap-4 rounded-2xl bg-white/[0.06] p-4 ring-1 ring-white/10 transition-colors hover:bg-white/10"
-          >
-            <span className="grid size-11 place-items-center rounded-xl bg-white/10 text-white">
-              <MailIcon aria-hidden="true" strokeWidth={1.8} className="size-5" />
-            </span>
-            <span>
-              <span className="block text-sm text-brand-200">Email</span>
-              <span className="block font-medium text-white">{site.email}</span>
-            </span>
-          </a>
+          <ul className="mt-10 grid max-w-sm gap-3">
+            <li>
+              <ContactCard href={`mailto:${site.email}`} label="Email" value={site.email} icon={MailIcon} />
+            </li>
+            <li>
+              <ContactCard
+                href={site.whatsapp.href}
+                label="WhatsApp"
+                value={site.whatsapp.display}
+                icon={MessageCircleIcon}
+                external
+              />
+            </li>
+          </ul>
 
           <div className="mt-10">
             <p className="text-sm font-semibold text-white">Helpful to include</p>
@@ -69,5 +71,37 @@ export function Contact() {
         </Reveal>
       </div>
     </section>
+  )
+}
+
+/** A contact channel: icon, label and the address or number, as one link. */
+function ContactCard({
+  href,
+  label,
+  value,
+  icon: Icon,
+  external,
+}: {
+  href: string
+  label: string
+  value: string
+  icon: LucideIcon
+  external?: boolean
+}) {
+  return (
+    <a
+      href={href}
+      {...(external && { target: "_blank", rel: "noopener noreferrer" })}
+      className="flex h-full items-center gap-4 rounded-2xl bg-white/[0.06] p-4 ring-1 ring-white/10 transition-colors hover:bg-white/10"
+    >
+      <span className="grid size-11 shrink-0 place-items-center rounded-xl bg-white/10 text-white">
+        <Icon aria-hidden="true" strokeWidth={1.8} className="size-5" />
+      </span>
+      <span className="min-w-0">
+        <span className="block text-sm text-brand-200">{label}</span>
+        <span className="block font-medium wrap-anywhere text-white">{value}</span>
+        {external && <span className="sr-only"> (opens WhatsApp in a new tab)</span>}
+      </span>
+    </a>
   )
 }

@@ -55,6 +55,15 @@ export function ContactForm() {
               className="font-medium text-brand-700 underline underline-offset-2"
             >
               {site.email}
+            </a>{" "}
+            or message us on WhatsApp at{" "}
+            <a
+              href={site.whatsapp.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-medium text-brand-700 underline underline-offset-2"
+            >
+              {site.whatsapp.display}
             </a>
             . Your message is still below, so you can copy it.
           </p>

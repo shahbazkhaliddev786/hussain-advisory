@@ -8,7 +8,11 @@ export const site = {
   fullName: "PASA, Public Procurement and Supply Advisor",
   description:
     "Procurement advisory, training and mentoring from Naeem Abbas: more than 30 years in public procurement and contract management.",
-  email: "advisorpasa@gmail.com",
+  email: "contactpasa2@gmail.com",
+  whatsapp: {
+    display: "+92 321 5477219",
+    href: "https://wa.me/923215477219",
+  },
 }
 
 export const nav = [
@@ -191,8 +195,7 @@ export const faqs = [
   },
   {
     question: "How do we get started?",
-    answer:
-      "Send a short message about your procurement or training need with the form below, or email advisorpasa@gmail.com. Naeem will get back to you.",
+    answer: `Send a short message about your procurement or training need with the form below, email ${site.email}, or message Naeem on WhatsApp at ${site.whatsapp.display}. Naeem will get back to you.`,
   },
 ]
 

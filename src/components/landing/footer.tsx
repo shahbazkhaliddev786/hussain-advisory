@@ -49,9 +49,19 @@ export async function Footer() {
           <p>
             © {year} {site.fullName}
           </p>
-          <a href={`mailto:${site.email}`} className="transition-colors hover:text-navy">
-            {site.email}
-          </a>
+          <p className="flex flex-wrap gap-x-5 gap-y-2">
+            <a href={`mailto:${site.email}`} className="transition-colors hover:text-navy">
+              {site.email}
+            </a>
+            <a
+              href={site.whatsapp.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="transition-colors hover:text-navy"
+            >
+              WhatsApp {site.whatsapp.display}
+            </a>
+          </p>
         </div>
       </div>
     </footer>
