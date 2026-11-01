@@ -49,7 +49,7 @@ export function ContactForm() {
         >
           <p className="font-semibold">Your message wasn’t sent</p>
           <p className="mt-1">
-            This form isn’t connected yet. Please email{" "}
+            Something went wrong on our side. Please email{" "}
             <a
               href={`mailto:${site.email}`}
               className="font-medium text-brand-700 underline underline-offset-2"
@@ -72,7 +72,9 @@ export function ContactForm() {
 
       <div className="grid gap-5 sm:grid-cols-2">
         <Field name="name" label="Name" error={errors.name}>
-          {(props) => <Input {...props} autoComplete="name" defaultValue={values.name} />}
+          {(props) => (
+            <Input {...props} autoComplete="name" placeholder="Your full name" defaultValue={values.name} />
+          )}
         </Field>
         <Field name="email" label="Email" error={errors.email}>
           {(props) => (
@@ -81,6 +83,7 @@ export function ContactForm() {
               type="email"
               autoComplete="email"
               spellCheck={false}
+              placeholder="you@organization.com"
               defaultValue={values.email}
             />
           )}
@@ -88,7 +91,14 @@ export function ContactForm() {
       </div>
 
       <Field name="organization" label="Organization" optional error={errors.organization}>
-        {(props) => <Input {...props} autoComplete="organization" defaultValue={values.organization} />}
+        {(props) => (
+          <Input
+            {...props}
+            autoComplete="organization"
+            placeholder="Ministry, project or company"
+            defaultValue={values.organization}
+          />
+        )}
       </Field>
 
       <Field name="interest" label="I’m interested in" error={errors.interest}>
