@@ -49,7 +49,7 @@ export function ContactForm() {
         >
           <p className="font-semibold">Your message wasn’t sent</p>
           <p className="mt-1">
-            This form isn’t connected yet. Please email{" "}
+            Something went wrong on our side. Please email{" "}
             <a
               href={`mailto:${site.email}`}
               className="font-medium text-brand-700 underline underline-offset-2"
