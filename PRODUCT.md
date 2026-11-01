@@ -52,7 +52,7 @@ PASA is the practice of one senior practitioner, Naeem Abbas: more than 30 years
 
 - Client brief: `docs/brief/client-brief.md`.
 - Logo: rendered in the client's mockup; vector redraw in `brand/`.
-- Professional portrait of Naeem Abbas: exists, not yet supplied.
+- Photograph of Naeem Abbas: `src/assets/naeem-abbas.jpg`, shown in the about section.
 - Experience: development projects financed by the World Bank, ADB, IFAD, AFD, USAID, FCDO, the EU and international NGOs (per the brief).
 - Contact: contactpasa2@gmail.com, WhatsApp +92 321 5477219.
 - Absent, never to be fabricated: testimonials, client names, statistics (people trained, project counts), training dates, fees and venues, published articles.
