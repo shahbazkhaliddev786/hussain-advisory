@@ -1,9 +1,11 @@
+import Image from "next/image"
 import { ArrowRightIcon } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import { Reveal } from "@/components/landing/reveal"
 import { SectionHeading } from "@/components/landing/section-heading"
 import { advisor } from "@/content/landing"
+import portrait from "@/assets/naeem-abbas.jpg"
 
 export function About() {
   return (
@@ -67,7 +69,7 @@ export function About() {
   )
 }
 
-/** Portrait frame. Shows a monogram until the professional photograph is supplied. */
+/** Naeem Abbas's photograph, with his name and role on a glass card. */
 function Portrait() {
   return (
     <div className="relative mx-auto max-w-md">
@@ -75,14 +77,14 @@ function Portrait() {
         aria-hidden="true"
         className="absolute -inset-6 -z-10 rounded-[3rem] bg-[radial-gradient(60%_60%_at_30%_20%,rgb(84_138_210/0.35),transparent),radial-gradient(50%_50%_at_80%_90%,rgb(252_222_126/0.45),transparent)] blur-2xl"
       />
-      <div
-        role="img"
-        aria-label={`${advisor.name} (photograph to come)`}
-        className="relative grid aspect-[4/5] place-items-center overflow-hidden rounded-[2rem] bg-[linear-gradient(160deg,#eaf2fd_0%,#dce9fa_45%,#fdf3d3_100%)] shadow-[0_30px_70px_-30px_rgb(11_52_89/0.45)] ring-1 ring-white"
-      >
-        <span aria-hidden="true" className="text-[9rem] font-semibold tracking-[-0.06em] text-navy/15">
-          NA
-        </span>
+      <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem] bg-navy shadow-[0_30px_70px_-30px_rgb(11_52_89/0.45)] ring-1 ring-white">
+        <Image
+          src={portrait}
+          alt={`Portrait of ${advisor.name}`}
+          placeholder="blur"
+          sizes="(min-width: 480px) 28rem, 100vw"
+          className="size-full object-cover object-top"
+        />
         <div className="absolute inset-x-4 bottom-4 rounded-2xl border border-white/70 bg-white/75 p-4 shadow-[0_10px_30px_-12px_rgb(11_52_89/0.35)] backdrop-blur-xl">
           <p className="font-semibold text-navy">{advisor.name}</p>
           <p className="text-sm text-muted">{advisor.role}</p>

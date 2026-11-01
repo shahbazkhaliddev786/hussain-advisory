@@ -44,6 +44,7 @@ src/components/landing   The page's sections: navbar, hero, services, approach, 
                          training, FAQ, contact and footer
 src/components/ui        shadcn/ui components, tuned to PASA
 src/content/landing.ts   All the copy on the page
+src/assets               Naeem Abbas's photograph
 src/lib/forms            The contact form's action, validation and delivery
 public/brand             Logo files
 PRODUCT.md, DESIGN.md    Product context and the design system
@@ -67,6 +68,5 @@ Messages are sent to **Formspree** (form `xyeendgk`), which emails them to the i
 
 ## Waiting for the client
 
-- Naeem Abbas's professional photograph (the about section shows a monogram until then)
 - Training dates for the beginner program
 - Original logo artwork (`public/brand` holds a vector redraw)
