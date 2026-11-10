@@ -8,7 +8,7 @@ One-page website for PASA, Public Procurement and Supply Advisor: procurement ad
 - Tailwind CSS 4, with the PASA tokens in `src/app/globals.css`
 - shadcn/ui components (button, input, textarea, native select), Radix tabs, lucide icons
 - Geist through `next/font`
-- A Server Action with zod validation for the contact form, delivered through Formspree
+- Formspree for the contact form
 
 ## Getting started
 
@@ -45,7 +45,6 @@ src/components/landing   The page's sections: navbar, hero, services, approach, 
 src/components/ui        shadcn/ui components, tuned to PASA
 src/content/landing.ts   All the copy on the page
 src/assets               Naeem Abbas's photograph
-src/lib/forms            The contact form's action, validation and delivery
 public/brand             Logo files
 PRODUCT.md, DESIGN.md    Product context and the design system
 ```
@@ -56,15 +55,11 @@ All text lives in `src/content/landing.ts`: services, the six procurement stages
 
 ## Contact form
 
-The form validates on the server, keeps the visitor's answers on errors, works without JavaScript and quietly drops spam bots (a hidden honeypot field).
+The form posts straight to **Formspree** (form `xyeendgk`, set in `src/components/landing/contact-form.tsx`). Formspree emails each message to the inbox set in the Formspree dashboard, then shows its own "Thanks" page with a link back to the site. The browser checks the required fields before sending, and a hidden `_gotcha` field lets Formspree drop spam bots.
 
-Messages are sent to **Formspree** (form `xyeendgk`), which emails them to the inbox set in the Formspree dashboard. The visitor's address is the reply-to, so replying to the email answers them directly. The delivery code is in `src/lib/forms/inbox.ts`. If Formspree can't be reached, the form says so, offers email and WhatsApp, and keeps the visitor's message so they can copy it.
-
-| Variable               | Purpose                                                                              |
-| ---------------------- | ------------------------------------------------------------------------------------ |
-| `NEXT_PUBLIC_SITE_URL` | Public origin for the canonical URL. Defaults to `http://localhost:3000`             |
-| `PASA_INBOX`           | `log` prints contact messages to the server log instead of sending them to Formspree |
-| `FORMSPREE_ENDPOINT`   | Overrides the Formspree endpoint. Defaults to `https://formspree.io/f/xyeendgk`      |
+| Variable               | Purpose                                                                  |
+| ---------------------- | ------------------------------------------------------------------------ |
+| `NEXT_PUBLIC_SITE_URL` | Public origin for the canonical URL. Defaults to `http://localhost:3000` |
 
 ## Waiting for the client
 
