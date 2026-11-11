@@ -59,7 +59,7 @@ export function About() {
             <Button asChild size="lg" variant="navy" className="mt-10">
               <a href="#contact">
                 Work with Naeem
-                <ArrowRightIcon className="transition-transform duration-(--duration-quick) group-hover/button:translate-x-0.5" />
+                <ArrowRightIcon className="transition-transform duration-(--duration-quick) motion-safe:group-hover/button:translate-x-0.5" />
               </a>
             </Button>
           </Reveal>

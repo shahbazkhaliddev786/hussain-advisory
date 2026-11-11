@@ -18,7 +18,7 @@ export function Hero() {
       <div className="mx-auto max-w-6xl px-6 text-center">
         <a
           href="#about"
-          className="inline-flex animate-in items-center gap-2 rounded-full border border-brand-200/80 bg-white/70 py-1 pr-3 pl-1.5 text-sm font-medium text-navy shadow-hairline backdrop-blur transition-colors duration-(--duration-quick) ease-out-strong animation-duration-700 fade-in-0 fill-mode-both slide-in-from-bottom-3 hover:border-brand-300 motion-reduce:animate-none"
+          className="inline-flex animate-in items-center gap-2 rounded-full border border-brand-200/80 bg-white/70 py-1 pr-3 pl-1.5 text-sm font-medium text-navy shadow-hairline backdrop-blur transition-colors duration-(--duration-quick) ease-out-strong animation-duration-500 fade-in-0 fill-mode-both slide-in-from-bottom-3 hover:border-brand-300 motion-reduce:animate-none"
         >
           <span className="rounded-full bg-brand-50 px-2 py-0.5 text-xs font-semibold text-brand-700">
             PASA
@@ -36,11 +36,11 @@ export function Hero() {
           {hero.intro}
         </p>
 
-        <div className="mt-9 flex animate-in flex-col justify-center gap-3 delay-200 ease-out-strong animation-duration-700 fade-in-0 fill-mode-both slide-in-from-bottom-3 motion-reduce:animate-none sm:flex-row">
+        <div className="mt-9 flex animate-in flex-col justify-center gap-3 delay-80 ease-out-strong animation-duration-500 fade-in-0 fill-mode-both slide-in-from-bottom-3 motion-reduce:animate-none sm:flex-row">
           <Button asChild size="lg">
             <a href="#contact">
               Request advisory support
-              <ArrowRightIcon className="transition-transform duration-(--duration-quick) group-hover/button:translate-x-0.5" />
+              <ArrowRightIcon className="transition-transform duration-(--duration-quick) motion-safe:group-hover/button:translate-x-0.5" />
             </a>
           </Button>
           <Button asChild size="lg" variant="secondary">
@@ -48,7 +48,7 @@ export function Hero() {
           </Button>
         </div>
 
-        <ul className="mt-8 flex animate-in flex-wrap justify-center gap-x-6 gap-y-2 text-sm text-muted delay-300 ease-out-strong animation-duration-700 fade-in-0 fill-mode-both slide-in-from-bottom-3 motion-reduce:animate-none">
+        <ul className="mt-8 flex animate-in flex-wrap justify-center gap-x-6 gap-y-2 text-sm text-muted delay-160 ease-out-strong animation-duration-500 fade-in-0 fill-mode-both slide-in-from-bottom-3 motion-reduce:animate-none">
           {hero.audiences.map((audience) => (
             <li key={audience} className="flex items-center gap-1.5">
               <CircleCheckIcon aria-hidden="true" className="size-4 text-brand-500" />

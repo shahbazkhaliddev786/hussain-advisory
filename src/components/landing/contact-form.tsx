@@ -85,7 +85,7 @@ export function ContactForm() {
 
       <Button type="submit" size="lg" className="mt-1 w-full">
         Send inquiry
-        <ArrowRightIcon className="transition-transform duration-(--duration-quick) group-hover/button:translate-x-0.5" />
+        <ArrowRightIcon className="transition-transform duration-(--duration-quick) motion-safe:group-hover/button:translate-x-0.5" />
       </Button>
       <p className="text-center text-xs text-muted">Your details are only used to reply to you.</p>
     </form>

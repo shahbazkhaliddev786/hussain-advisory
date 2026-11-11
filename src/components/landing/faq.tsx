@@ -45,7 +45,7 @@ export function Faq() {
                 {faq.question}
                 <ChevronDownIcon
                   aria-hidden="true"
-                  className="size-5 shrink-0 text-muted transition-transform duration-(--duration-fast) ease-(--ease-smooth-out) group-open:rotate-180 motion-reduce:transition-none"
+                  className="size-5 shrink-0 text-muted transition-transform duration-(--duration-quick) ease-(--ease-smooth-out) group-open:rotate-180 group-open:duration-(--duration-fast) motion-reduce:transition-none"
                 />
               </summary>
               <div className="disclosure-body">

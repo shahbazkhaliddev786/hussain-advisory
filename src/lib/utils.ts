@@ -8,7 +8,7 @@ const twMerge = extendTailwindMerge({
   extend: {
     theme: {
       text: ["ui"],
-      shadow: ["hairline", "tab", "card", "lift", "float", "raised", "overlay"],
+      shadow: ["hairline", "tab", "card", "float", "raised", "overlay"],
     },
   },
 })

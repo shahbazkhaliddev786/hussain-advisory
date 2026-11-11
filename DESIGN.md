@@ -46,8 +46,8 @@ Use only these steps; no arbitrary `text-[…px]` sizes. Sentence case everywher
 
 - Content width `max-w-6xl` (72rem) with 24px side padding.
 - Sections alternate white and `surface`, with navy for the training card and the contact section. Section padding is 96–128px.
-- `card`: white, hairline border, soft layered shadow; cards are `rounded-2xl` or `rounded-3xl` and lift 2px on hover.
-- Elevation comes from the shadow tokens, smallest to largest: `shadow-hairline` (pills, inputs), `shadow-tab` (selected tab), `shadow-card` (cards at rest), `shadow-lift` (cards on hover), `shadow-float` (chips, badges, glass captions), `shadow-raised` (hero card, portrait, training cards), `shadow-overlay` (the contact form on navy). The buttons keep their own built-in shadows.
+- `card`: white, hairline border, soft layered shadow; cards are `rounded-2xl` or `rounded-3xl`. Cards that are not links do not move on hover; the service cards answer the pointer with the spotlight glow only.
+- Elevation comes from the shadow tokens, smallest to largest: `shadow-hairline` (pills, inputs), `shadow-tab` (selected tab), `shadow-card` (cards), `shadow-float` (chips, badges, glass captions), `shadow-raised` (hero card, portrait, training cards), `shadow-overlay` (the contact form on navy). The buttons keep their own built-in shadows.
 - Gaps: 48px (64px from `md`) between a section heading and its content.
 - Bento cards with an illustration go side by side from `lg`; below that the illustration sits under the text.
 - `border-gradient`: the logo's blue, sky and yellow as a border, used once (the featured training card).
@@ -56,7 +56,7 @@ Use only these steps; no arbitrary `text-[…px]` sizes. Sentence case everywher
 ## Components
 
 - **Navbar** (`landing/navbar.tsx`): floating, transparent at the top, frosted glass after scrolling. Phones get a dropdown panel (Escape and outside taps close it).
-- **Hero** (`landing/hero.tsx`): a soft gradient glow over a faint grid, the headline in two lines with the second in gradient text, and the procurement-cycle card with floating detail chips.
+- **Hero** (`landing/hero.tsx`): a soft gradient glow over a faint grid, the headline in two lines with the second in gradient text, and the procurement-cycle card with two detail chips.
 - **Services** (`landing/services.tsx`): a bento grid; the two wide cards carry small illustrations.
 - **Approach** (`landing/approach.tsx`): Radix tabs for the six stages; arrow keys move between them. A white pill slides to the selected stage, and the panel enters from the side you moved towards.
 - **FAQ** (`landing/faq.tsx`): native `<details>`, one open at a time; answers expand and collapse where the browser supports `::details-content` (the `disclosure` utility) and simply open elsewhere.
@@ -64,15 +64,16 @@ Use only these steps; no arbitrary `text-[…px]` sizes. Sentence case everywher
 
 ## Motion
 
-- Motion tokens (`--duration-*`, `--ease-smooth-out`, from the transitions.dev scale) live in `globals.css`; every transition uses them: micro 80ms (press), quick 150ms (hover in, closing), fast 250ms (hover out, opening, tabs), medium 350ms (card hover out, glow fade).
+- Motion tokens (`--duration-*`, `--ease-smooth-out`, from the transitions.dev scale) live in `globals.css`; every transition uses them. UI motion stays under 300ms: quick 150ms (hover in, closing, button press, field focus), fast 250ms (hover out, opening, tabs, navbar, glow fade). Micro, medium and slow stay in the scale for later use.
+- One curve: `--ease-smooth-out` (a strong ease-out, quint) in CSS, `power4.out` in GSAP.
 - Opening is slower than closing; hover arrives quickly and leaves softly. Tailwind v4 moves elements with the `translate` and `scale` properties, so transitions list those, not `transform`.
-- Hero: badge and buttons fade up on load. The cycle card (`landing/cycle-card.tsx`) runs a GSAP timeline: panel rises, the six stages stagger in, the connector draws left to right, then the detail chips. The headline and intro do not animate, so they paint immediately.
-- Sections below the fold fade up once via GSAP ScrollTrigger (`landing/reveal.tsx`). Content is visible without JavaScript; reduced motion keeps a plain fade.
-- Service cards carry a pointer-following glow (`landing/spotlight-card.tsx`, adapted from React Bits), mouse and pen only. The glow is moved with a transform, not repainted.
-- From `md`, the hero's three glows drift on slow 22–30s loops (an aurora, CSS only). Ambient loops (aurora, floating chips) carry `data-ambient` and pause while the hero is off-screen (`landing/pause-offscreen.tsx`).
-- The phone menu fades and slides 4px (open 250ms, close 150ms). Buttons scale to 0.98 when pressed.
-- Hover: cards lift 2px, arrows nudge 2px. Floating chips drift slowly.
-- `prefers-reduced-motion` turns off movement, the ambient loops and smooth scrolling; colour fades stay.
+- Hero: badge, buttons and audience line fade up on load (500ms, staggered 80ms). The cycle card (`landing/cycle-card.tsx`) runs a GSAP timeline: panel rises, the six stages stagger in, the connector draws left to right, then the two detail chips settle; all done in about 1.6s. The headline and intro do not animate, so they paint immediately.
+- Sections below the fold fade up 12px once via GSAP ScrollTrigger (`landing/reveal.tsx`, 0.5s). Content is visible without JavaScript; reduced motion keeps a plain fade.
+- Approach: the stage card stays put when the stage changes; only its content swaps, fading in with a 2px blur and sliding 8px from the side the selection moved towards.
+- Service cards carry a pointer-following glow (`landing/spotlight-card.tsx`, adapted from React Bits), mouse and pen only. The glow is moved with a transform and trails the pointer by a 150ms transition.
+- From `md`, the hero's three glows drift on slow 22–30s loops (an aurora, CSS only). It is the page's only ambient loop: it carries `data-ambient` and pauses while the hero is off-screen (`landing/pause-offscreen.tsx`).
+- The phone menu fades and slides 4px (open 250ms, close 150ms). Buttons scale to 0.98 when pressed. Arrows nudge 2px on hover.
+- `prefers-reduced-motion` turns off movement (slides, blur, the pill, the aurora, arrow nudges) and smooth scrolling. Fades stay: the phone menu, the stage content, FAQ answers and section reveals still fade in.
 
 ## Accessibility
 

@@ -34,7 +34,6 @@
   --shadow-hairline: 0 1px 2px rgb(16 40 80 / 0.06);
   --shadow-tab: 0 1px 2px rgb(16 40 80 / 0.08), 0 4px 12px -4px rgb(16 40 80 / 0.15);
   --shadow-card: 0 1px 2px rgb(16 40 80 / 0.04), 0 12px 32px -16px rgb(16 40 80 / 0.16);
-  --shadow-lift: 0 1px 2px rgb(16 40 80 / 0.04), 0 24px 48px -24px rgb(44 95 176 / 0.45);
   --shadow-float: 0 20px 50px -20px rgb(11 52 89 / 0.4);
   --shadow-raised: 0 30px 80px -30px rgb(11 52 89 / 0.4);
   --shadow-overlay: 0 40px 90px -30px rgb(0 0 0 / 0.55);
@@ -47,23 +46,10 @@
   --duration-medium: 350ms;
   --duration-slow: 400ms;
 
-  --animate-float: float 8s ease-in-out infinite;
-  --animate-float-late: float 8s ease-in-out 2.5s infinite;
-
   /* Hero glows drift slowly, like React Bits' Aurora but in CSS: transforms only, no WebGL */
   --animate-aurora-a: aurora-a 22s ease-in-out infinite alternate;
   --animate-aurora-b: aurora-b 26s ease-in-out infinite alternate;
   --animate-aurora-c: aurora-c 30s ease-in-out infinite alternate;
-
-  @keyframes float {
-    0%,
-    100% {
-      transform: translateY(0);
-    }
-    50% {
-      transform: translateY(-10px);
-    }
-  }
 
   @keyframes aurora-a {
     to {
@@ -190,6 +176,7 @@
  * Pointer-following light on a card (React Bits "spotlight card"); mouse and pen only.
  * The glow is a 44rem circle centred on its own origin (the negative margins); SpotlightCard
  * moves it with a transform, and it is promoted to its own layer only while the card is hovered.
+ * With motion allowed, a 150ms transform transition lets the light trail the pointer slightly.
  */
 @utility spotlight-card {
   position: relative;
@@ -214,7 +201,15 @@
     transparent 70%
   );
   opacity: 0;
-  transition: opacity var(--duration-medium) var(--ease-smooth-out);
+  transition: opacity var(--duration-fast) var(--ease-smooth-out);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .spotlight-card__glow {
+    transition:
+      opacity var(--duration-fast) var(--ease-smooth-out),
+      transform var(--duration-quick) var(--ease-smooth-out);
+  }
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -224,8 +219,8 @@
   }
 }
 
-/* Ambient loops (hero aurora, floating chips) pause while their section is off-screen. Unlayered,
-   so it wins over the animate-* utilities. */
+/* Ambient loops (the hero aurora) pause while their section is off-screen. Unlayered, so it wins
+   over the animate-* utilities. */
 [data-offscreen] [data-ambient] {
   animation-play-state: paused;
 }
@@ -233,7 +228,8 @@
 /*
  * Native <details> that expand and collapse (transitions.dev accordion, on ::details-content).
  * The grid track goes 0fr to 1fr; the body clips its own overflow and carries no padding.
- * Opening takes 250ms, closing 150ms. Browsers without ::details-content simply open instantly.
+ * Opening takes 250ms, closing 150ms. Reduced motion snaps the height but keeps the answer's fade.
+ * Browsers without ::details-content simply open instantly.
  */
 @utility disclosure {
   &::details-content {
@@ -247,10 +243,12 @@
 
   & > .disclosure-body {
     opacity: 0;
+    transition: opacity var(--duration-quick) var(--ease-smooth-out);
   }
 
   &[open] > .disclosure-body {
     opacity: 1;
+    transition-duration: var(--duration-fast);
   }
 
   @media (prefers-reduced-motion: no-preference) {
@@ -261,14 +259,6 @@
     }
 
     &[open]::details-content {
-      transition-duration: var(--duration-fast);
-    }
-
-    & > .disclosure-body {
-      transition: opacity var(--duration-quick) var(--ease-smooth-out);
-    }
-
-    &[open] > .disclosure-body {
       transition-duration: var(--duration-fast);
     }
   }

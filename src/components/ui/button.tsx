@@ -5,10 +5,10 @@ import { Slot } from "radix-ui"
 import { cn } from "@/lib/utils"
 
 // shadcn/ui button, tuned for PASA: pill shapes, a blue gradient primary with a soft glow,
-// and quick press feedback. Hover arrives in 150ms and leaves in 250ms; a press scales in 80ms.
+// and quick press feedback. Hover arrives in 150ms and leaves in 250ms; a press scales to 0.98 in 150ms.
 // Reduced motion keeps the colour fades and drops the scale.
 const buttonVariants = cva(
-  "group/button inline-flex shrink-0 items-center justify-center gap-2 rounded-full font-medium whitespace-nowrap transition-[background-color,color,box-shadow,filter,scale] duration-(--duration-fast) ease-(--ease-smooth-out) select-none hover:duration-(--duration-quick) active:scale-[0.98] active:duration-(--duration-micro) disabled:pointer-events-none disabled:opacity-50 motion-reduce:active:scale-100 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+  "group/button inline-flex shrink-0 items-center justify-center gap-2 rounded-full font-medium whitespace-nowrap transition-[background-color,color,box-shadow,filter,scale] duration-(--duration-fast) ease-(--ease-smooth-out) select-none hover:duration-(--duration-quick) active:scale-[0.98] disabled:pointer-events-none disabled:opacity-50 motion-reduce:active:scale-100 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
   {
     variants: {
       variant: {

@@ -8,6 +8,7 @@ import { Reveal } from "@/components/landing/reveal"
 import { SectionHeading } from "@/components/landing/section-heading"
 import { StageIcon } from "@/components/landing/stage-icon"
 import { stages } from "@/content/landing"
+import { cn } from "@/lib/utils"
 
 /** The procurement cycle as tabs: pick a stage to see where PASA helps. Arrow keys move between stages. */
 export function Approach() {
@@ -15,6 +16,12 @@ export function Approach() {
   // Which way the panel enters: forward (from the right) or back (from the left), like the pill.
   const [direction, setDirection] = useState<"forward" | "back">("forward")
   const { listRef, pillRef } = useSlidingPill(active)
+  // The card stays put when the stage changes; only its content swaps, fading in and (motion
+  // allowing) sliding 8px from the side the selection moved towards, with a 2px blur to bridge the two.
+  const enter = cn(
+    "animate-in duration-(--duration-fast) ease-(--ease-smooth-out) fade-in-0 motion-safe:blur-in-2",
+    direction === "back" ? "motion-safe:slide-in-from-left-2" : "motion-safe:slide-in-from-right-2",
+  )
 
   function select(next: string) {
     const from = stages.findIndex((stage) => stage.id === active)
@@ -45,7 +52,7 @@ export function Approach() {
             <span
               ref={pillRef}
               aria-hidden="true"
-              className="pointer-events-none absolute top-0 left-0 rounded-xl bg-white opacity-0 shadow-tab transition-[translate,width,height] duration-(--duration-fast) ease-(--ease-smooth-out) group-data-[pill=ready]/tabs:opacity-100 motion-reduce:transition-none sm:rounded-full"
+              className="pointer-events-none absolute top-0 left-0 rounded-xl bg-white opacity-0 shadow-tab transition-[translate,width] duration-(--duration-fast) ease-(--ease-smooth-out) group-data-[pill=ready]/tabs:opacity-100 motion-reduce:transition-none sm:rounded-full"
             />
             {stages.map((stage, i) => (
               <Tabs.Trigger
@@ -62,14 +69,9 @@ export function Approach() {
           </Tabs.List>
 
           {stages.map((stage, i) => (
-            <Tabs.Content
-              key={stage.id}
-              value={stage.id}
-              data-direction={direction}
-              className="mt-8 animate-in duration-(--duration-fast) ease-(--ease-smooth-out) fade-in-0 focus-visible:outline-offset-8 data-[direction=back]:slide-in-from-left-2 data-[direction=forward]:slide-in-from-right-2 motion-reduce:animate-none"
-            >
+            <Tabs.Content key={stage.id} value={stage.id} className="mt-8 focus-visible:outline-offset-8">
               <div className="grid gap-10 rounded-3xl p-7 card md:grid-cols-[1.1fr_1fr] md:p-12">
-                <div>
+                <div className={enter}>
                   <div className="flex items-center gap-3">
                     <span className="grid size-12 place-items-center rounded-2xl bg-gradient-to-br from-brand-500 to-brand-700 text-white shadow-[0_10px_24px_-10px_rgb(44_95_176/0.8)]">
                       <StageIcon id={stage.id} className="size-[22px]" />
@@ -87,34 +89,36 @@ export function Approach() {
                     Talk to Naeem about this stage
                     <ArrowRightIcon
                       aria-hidden="true"
-                      className="size-4 transition-transform duration-(--duration-quick) group-hover:translate-x-0.5"
+                      className="size-4 transition-transform duration-(--duration-quick) motion-safe:group-hover:translate-x-0.5"
                     />
                   </a>
                 </div>
 
                 <div className="rounded-2xl bg-surface p-6 ring-1 ring-line md:p-7">
-                  <p className="text-sm font-semibold text-navy">How PASA helps</p>
-                  <ul className="mt-5 grid gap-4">
-                    {stage.help.map((item) => (
-                      <li key={item} className="flex items-start gap-3 text-body">
-                        <span className="mt-0.5 grid size-5 shrink-0 place-items-center rounded-full bg-brand-500 text-white">
-                          <CheckIcon aria-hidden="true" strokeWidth={3} className="size-3" />
-                        </span>
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                  <div aria-hidden="true" className="mt-7 flex gap-1.5">
-                    {stages.map((other, j) => (
-                      <span
-                        key={other.id}
-                        className={
-                          j <= i
-                            ? "h-1.5 flex-1 rounded-full bg-brand-500"
-                            : "h-1.5 flex-1 rounded-full bg-line"
-                        }
-                      />
-                    ))}
+                  <div className={enter}>
+                    <p className="text-sm font-semibold text-navy">How PASA helps</p>
+                    <ul className="mt-5 grid gap-4">
+                      {stage.help.map((item) => (
+                        <li key={item} className="flex items-start gap-3 text-body">
+                          <span className="mt-0.5 grid size-5 shrink-0 place-items-center rounded-full bg-brand-500 text-white">
+                            <CheckIcon aria-hidden="true" strokeWidth={3} className="size-3" />
+                          </span>
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                    <div aria-hidden="true" className="mt-7 flex gap-1.5">
+                      {stages.map((other, j) => (
+                        <span
+                          key={other.id}
+                          className={
+                            j <= i
+                              ? "h-1.5 flex-1 rounded-full bg-brand-500"
+                              : "h-1.5 flex-1 rounded-full bg-line"
+                          }
+                        />
+                      ))}
+                    </div>
                   </div>
                 </div>
               </div>

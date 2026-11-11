@@ -14,20 +14,21 @@ gsap.registerPlugin(useGSAP)
 export function CycleCard() {
   const root = useRef<HTMLDivElement>(null)
 
-  // Entrance: the card rises, the six stages follow in order and the connector draws left to right.
+  // Entrance: the card rises, the six stages follow in order, the connector draws left to right and the
+  // two chips settle. power4.out is the same quint curve as the CSS motion tokens.
   useGSAP(
     () => {
       const mm = gsap.matchMedia()
       mm.add("(prefers-reduced-motion: no-preference)", () => {
-        const tl = gsap.timeline({ defaults: { ease: "power3.out" } })
-        tl.from("[data-cycle-panel]", { autoAlpha: 0, y: 32, duration: 1, delay: 0.25 })
+        const tl = gsap.timeline({ defaults: { ease: "power4.out" } })
+        tl.from("[data-cycle-panel]", { autoAlpha: 0, y: 24, duration: 0.8, delay: 0.1 })
           .from("[data-cycle-stage]", { autoAlpha: 0, y: 16, duration: 0.6, stagger: 0.05 }, "-=0.6")
           .from(
             "[data-cycle-line]",
             { scaleX: 0, transformOrigin: "left center", duration: 0.9, ease: "power2.inOut" },
             "-=0.7",
           )
-          .from("[data-cycle-chip]", { autoAlpha: 0, y: 12, duration: 0.6, stagger: 0.12 }, "-=0.4")
+          .from("[data-cycle-chip]", { autoAlpha: 0, y: 12, duration: 0.6, stagger: 0.08 }, "-=0.4")
       })
       return () => mm.revert()
     },
@@ -66,7 +67,7 @@ export function CycleCard() {
               <li
                 key={stage.id}
                 data-cycle-stage
-                className="relative rounded-2xl bg-white p-4 text-left shadow-hairline ring-1 ring-line transition-[translate,box-shadow] duration-(--duration-medium) ease-(--ease-smooth-out) hover:-translate-y-0.5 hover:shadow-lift hover:duration-(--duration-fast)"
+                className="relative rounded-2xl bg-white p-4 text-left shadow-hairline ring-1 ring-line"
               >
                 <div className="flex items-center justify-between">
                   <span className="grid size-9 place-items-center rounded-xl bg-gradient-to-br from-brand-50 to-brand-100 text-brand-700 ring-1 ring-brand-100">
@@ -82,34 +83,31 @@ export function CycleCard() {
         </div>
       </div>
 
-      {/* The outer box takes the entrance (GSAP); the inner one drifts (CSS), so the two never fight over transform. */}
-      <div data-cycle-chip aria-hidden="true" className="absolute bottom-12 left-10 hidden w-64 xl:block">
-        <div
-          data-ambient
-          className="flex animate-float items-center gap-3 rounded-2xl border border-white/80 bg-white/95 p-4 text-left shadow-float ring-1 ring-line motion-reduce:animate-none"
-        >
-          <span className="grid size-9 place-items-center rounded-xl bg-leaf/60 text-navy">
-            <ScaleIcon className="size-[18px]" strokeWidth={1.8} />
-          </span>
-          <div>
-            <p className="text-sm font-semibold text-navy">Independent evaluation</p>
-            <p className="text-xs text-muted">Criteria applied as published</p>
-          </div>
+      <div
+        data-cycle-chip
+        aria-hidden="true"
+        className="absolute bottom-12 left-10 hidden w-64 items-center gap-3 rounded-2xl border border-white/80 bg-white/95 p-4 text-left shadow-float ring-1 ring-line xl:flex"
+      >
+        <span className="grid size-9 place-items-center rounded-xl bg-leaf/60 text-navy">
+          <ScaleIcon className="size-[18px]" strokeWidth={1.8} />
+        </span>
+        <div>
+          <p className="text-sm font-semibold text-navy">Independent evaluation</p>
+          <p className="text-xs text-muted">Criteria applied as published</p>
         </div>
       </div>
 
-      <div data-cycle-chip aria-hidden="true" className="absolute right-10 bottom-12 hidden w-64 xl:block">
-        <div
-          data-ambient
-          className="flex animate-float-late items-center gap-3 rounded-2xl border border-white/80 bg-white/95 p-4 text-left shadow-float ring-1 ring-line motion-reduce:animate-none"
-        >
-          <span className="grid size-9 place-items-center rounded-xl bg-brand-100 text-brand-700">
-            <UsersIcon className="size-[18px]" strokeWidth={1.8} />
-          </span>
-          <div>
-            <p className="text-sm font-semibold text-navy">Training and mentoring</p>
-            <p className="text-xs text-muted">For teams and individuals</p>
-          </div>
+      <div
+        data-cycle-chip
+        aria-hidden="true"
+        className="absolute right-10 bottom-12 hidden w-64 items-center gap-3 rounded-2xl border border-white/80 bg-white/95 p-4 text-left shadow-float ring-1 ring-line xl:flex"
+      >
+        <span className="grid size-9 place-items-center rounded-xl bg-brand-100 text-brand-700">
+          <UsersIcon className="size-[18px]" strokeWidth={1.8} />
+        </span>
+        <div>
+          <p className="text-sm font-semibold text-navy">Training and mentoring</p>
+          <p className="text-xs text-muted">For teams and individuals</p>
         </div>
       </div>
     </div>

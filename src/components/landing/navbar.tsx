@@ -50,7 +50,7 @@ export function Navbar() {
       <nav
         aria-label="Main"
         className={cn(
-          "mx-auto max-w-6xl rounded-2xl border transition-[background-color,border-color,box-shadow] duration-(--duration-medium)",
+          "mx-auto max-w-6xl rounded-2xl border transition-[background-color,border-color,box-shadow] duration-(--duration-fast)",
           solid
             ? "border-line/80 bg-white/80 shadow-[0_10px_30px_-14px_rgb(11_52_89/0.25)] backdrop-blur-xl backdrop-saturate-150"
             : "border-transparent bg-transparent",
@@ -85,7 +85,7 @@ export function Navbar() {
             <Button asChild size="sm" className="hidden sm:inline-flex">
               <a href="#contact">
                 Get in touch
-                <ArrowRightIcon className="transition-transform duration-(--duration-quick) group-hover/button:translate-x-0.5" />
+                <ArrowRightIcon className="transition-transform duration-(--duration-quick) motion-safe:group-hover/button:translate-x-0.5" />
               </a>
             </Button>
             <Button
@@ -103,14 +103,15 @@ export function Navbar() {
           </div>
         </div>
 
-        {/* Opens over 250ms and closes over 150ms; display flips after the fade (allow-discrete). */}
+        {/* Opens over 250ms and closes over 150ms; display flips after the fade (allow-discrete).
+            Reduced motion keeps the fade and drops the 4px slide. */}
         <div
           id="mobile-menu"
           className={cn(
-            "border-t border-line px-2 pt-2 pb-3 transition-[opacity,translate,display] transition-discrete ease-(--ease-smooth-out) motion-reduce:transition-none md:hidden",
+            "border-t border-line px-2 pt-2 pb-3 transition-[opacity,translate,display] transition-discrete ease-(--ease-smooth-out) md:hidden",
             open
-              ? "block translate-y-0 opacity-100 duration-(--duration-fast) starting:-translate-y-1 starting:opacity-0"
-              : "hidden -translate-y-1 opacity-0 duration-(--duration-quick)",
+              ? "block translate-y-0 opacity-100 duration-(--duration-fast) starting:-translate-y-1 starting:opacity-0 motion-reduce:starting:translate-y-0"
+              : "hidden -translate-y-1 opacity-0 duration-(--duration-quick) motion-reduce:translate-y-0",
           )}
         >
           <ul className="grid">

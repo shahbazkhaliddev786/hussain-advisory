@@ -54,7 +54,7 @@ export function Services() {
               <Reveal key={service.name} delay={(i % 2) * 80} className={spans[i]}>
                 <SpotlightCard
                   className={cn(
-                    "group relative h-full overflow-hidden rounded-3xl p-7 card transition-[translate,box-shadow] duration-(--duration-medium) ease-(--ease-smooth-out) hover:-translate-y-0.5 hover:shadow-lift hover:duration-(--duration-fast) md:p-8",
+                    "relative h-full overflow-hidden rounded-3xl p-7 card md:p-8",
                     wide && "lg:grid lg:grid-cols-[1fr_0.9fr] lg:items-start lg:gap-8",
                   )}
                 >
