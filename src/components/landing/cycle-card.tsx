@@ -21,7 +21,7 @@ export function CycleCard() {
       mm.add("(prefers-reduced-motion: no-preference)", () => {
         const tl = gsap.timeline({ defaults: { ease: "power3.out" } })
         tl.from("[data-cycle-panel]", { autoAlpha: 0, y: 32, duration: 1, delay: 0.25 })
-          .from("[data-cycle-stage]", { autoAlpha: 0, y: 16, duration: 0.6, stagger: 0.08 }, "-=0.6")
+          .from("[data-cycle-stage]", { autoAlpha: 0, y: 16, duration: 0.6, stagger: 0.05 }, "-=0.6")
           .from(
             "[data-cycle-line]",
             { scaleX: 0, transformOrigin: "left center", duration: 0.9, ease: "power2.inOut" },
@@ -43,7 +43,7 @@ export function CycleCard() {
 
       <div
         data-cycle-panel
-        className="rounded-[1.75rem] border border-white/80 bg-white/60 p-2 shadow-[0_30px_80px_-30px_rgb(11_52_89/0.35)] ring-1 ring-line backdrop-blur-xl"
+        className="rounded-[1.75rem] border border-white/80 bg-white/70 p-2 shadow-raised ring-1 ring-line"
       >
         <div className="rounded-[1.35rem] border border-line bg-gradient-to-b from-white to-surface p-5 md:p-8 xl:pb-14">
           <div className="flex flex-wrap items-center justify-between gap-3 text-left">
@@ -66,7 +66,7 @@ export function CycleCard() {
               <li
                 key={stage.id}
                 data-cycle-stage
-                className="relative rounded-2xl bg-white p-4 text-left shadow-[0_1px_2px_rgb(16_40_80/0.05)] ring-1 ring-line transition-[box-shadow,transform] duration-300 hover:-translate-y-0.5 hover:shadow-[0_14px_30px_-16px_rgb(44_95_176/0.45)]"
+                className="relative rounded-2xl bg-white p-4 text-left shadow-hairline ring-1 ring-line transition-[translate,box-shadow] duration-(--duration-medium) ease-(--ease-smooth-out) hover:-translate-y-0.5 hover:shadow-lift hover:duration-(--duration-fast)"
               >
                 <div className="flex items-center justify-between">
                   <span className="grid size-9 place-items-center rounded-xl bg-gradient-to-br from-brand-50 to-brand-100 text-brand-700 ring-1 ring-brand-100">
@@ -75,19 +75,19 @@ export function CycleCard() {
                   <span className="text-xs font-semibold text-muted tabular-nums">0{i + 1}</span>
                 </div>
                 <p className="mt-4 font-semibold text-navy">{stage.name}</p>
-                <p className="mt-1 text-[13px] leading-snug text-muted">{stage.summary}</p>
+                <p className="mt-1 text-sm leading-snug text-muted">{stage.summary}</p>
               </li>
             ))}
           </ol>
         </div>
       </div>
 
-      <div
-        data-cycle-chip
-        aria-hidden="true"
-        className="absolute bottom-12 left-10 hidden w-64 animate-float rounded-2xl border border-white/80 bg-white/85 p-4 text-left shadow-[0_20px_50px_-20px_rgb(11_52_89/0.4)] ring-1 ring-line backdrop-blur-xl motion-reduce:animate-none xl:block"
-      >
-        <div className="flex items-center gap-3">
+      {/* The outer box takes the entrance (GSAP); the inner one drifts (CSS), so the two never fight over transform. */}
+      <div data-cycle-chip aria-hidden="true" className="absolute bottom-12 left-10 hidden w-64 xl:block">
+        <div
+          data-ambient
+          className="flex animate-float items-center gap-3 rounded-2xl border border-white/80 bg-white/95 p-4 text-left shadow-float ring-1 ring-line motion-reduce:animate-none"
+        >
           <span className="grid size-9 place-items-center rounded-xl bg-leaf/60 text-navy">
             <ScaleIcon className="size-[18px]" strokeWidth={1.8} />
           </span>
@@ -98,12 +98,11 @@ export function CycleCard() {
         </div>
       </div>
 
-      <div
-        data-cycle-chip
-        aria-hidden="true"
-        className="absolute right-10 bottom-12 hidden w-64 animate-float-late rounded-2xl border border-white/80 bg-white/85 p-4 text-left shadow-[0_20px_50px_-20px_rgb(11_52_89/0.4)] ring-1 ring-line backdrop-blur-xl motion-reduce:animate-none xl:block"
-      >
-        <div className="flex items-center gap-3">
+      <div data-cycle-chip aria-hidden="true" className="absolute right-10 bottom-12 hidden w-64 xl:block">
+        <div
+          data-ambient
+          className="flex animate-float-late items-center gap-3 rounded-2xl border border-white/80 bg-white/95 p-4 text-left shadow-float ring-1 ring-line motion-reduce:animate-none"
+        >
           <span className="grid size-9 place-items-center rounded-xl bg-brand-100 text-brand-700">
             <UsersIcon className="size-[18px]" strokeWidth={1.8} />
           </span>

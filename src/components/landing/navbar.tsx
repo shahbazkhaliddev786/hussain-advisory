@@ -16,6 +16,7 @@ export function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
   const headerRef = useRef<HTMLElement>(null)
+  const toggleRef = useRef<HTMLButtonElement>(null)
 
   useEffect(() => {
     const update = () => setScrolled(window.scrollY > 12)
@@ -23,10 +24,14 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", update)
   }, [])
 
-  // Close the phone menu with Escape or a tap outside it.
+  // Close the phone menu with Escape (focus goes back to the menu button) or a tap outside it.
   useEffect(() => {
     if (!open) return
-    const onKey = (event: KeyboardEvent) => event.key === "Escape" && setOpen(false)
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key !== "Escape") return
+      setOpen(false)
+      if (headerRef.current?.contains(document.activeElement)) toggleRef.current?.focus()
+    }
     const onPointer = (event: PointerEvent) => {
       if (!headerRef.current?.contains(event.target as Node)) setOpen(false)
     }
@@ -68,7 +73,7 @@ export function Navbar() {
               <li key={link.href}>
                 <a
                   href={link.href}
-                  className="rounded-full px-3.5 py-2 text-[15px] font-medium text-body transition-colors hover:bg-navy/[0.04] hover:text-navy"
+                  className="rounded-full px-3.5 py-2 text-ui font-medium text-body transition-colors hover:bg-navy/[0.04] hover:text-navy"
                 >
                   {link.label}
                 </a>
@@ -84,6 +89,7 @@ export function Navbar() {
               </a>
             </Button>
             <Button
+              ref={toggleRef}
               variant="secondary"
               size="icon"
               className="md:hidden"
@@ -97,10 +103,15 @@ export function Navbar() {
           </div>
         </div>
 
+        {/* Opens over 250ms and closes over 150ms; display flips after the fade (allow-discrete). */}
         <div
           id="mobile-menu"
-          hidden={!open}
-          className="animate-in border-t border-line px-2 pt-2 pb-3 duration-(--duration-quick) fade-in-0 slide-in-from-top-1 md:hidden"
+          className={cn(
+            "border-t border-line px-2 pt-2 pb-3 transition-[opacity,translate,display] transition-discrete ease-(--ease-smooth-out) motion-reduce:transition-none md:hidden",
+            open
+              ? "block translate-y-0 opacity-100 duration-(--duration-fast) starting:-translate-y-1 starting:opacity-0"
+              : "hidden -translate-y-1 opacity-0 duration-(--duration-quick)",
+          )}
         >
           <ul className="grid">
             {nav.map((link) => (

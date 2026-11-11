@@ -46,7 +46,7 @@ export function Services() {
           />
         </Reveal>
 
-        <div className="mt-14 grid gap-4 md:grid-cols-6 md:gap-5">
+        <div className="mt-12 grid gap-4 md:mt-16 md:grid-cols-6 md:gap-5">
           {services.map((service, i) => {
             const Icon = icons[service.icon]
             const wide = i === 0 || i === 3
@@ -54,8 +54,8 @@ export function Services() {
               <Reveal key={service.name} delay={(i % 2) * 80} className={spans[i]}>
                 <SpotlightCard
                   className={cn(
-                    "group relative h-full overflow-hidden rounded-3xl p-7 card transition-[transform,box-shadow] duration-(--duration-fast) ease-(--ease-smooth-out) hover:-translate-y-1 hover:shadow-[0_1px_2px_rgb(16_40_80/0.04),0_24px_48px_-24px_rgb(44_95_176/0.45)] md:p-8",
-                    wide && "md:grid md:grid-cols-[1fr_0.9fr] md:items-center md:gap-8",
+                    "group relative h-full overflow-hidden rounded-3xl p-7 card transition-[translate,box-shadow] duration-(--duration-medium) ease-(--ease-smooth-out) hover:-translate-y-0.5 hover:shadow-lift hover:duration-(--duration-fast) md:p-8",
+                    wide && "lg:grid lg:grid-cols-[1fr_0.9fr] lg:items-start lg:gap-8",
                   )}
                 >
                   <div>
@@ -63,7 +63,7 @@ export function Services() {
                       <Icon aria-hidden="true" strokeWidth={1.8} className="size-5" />
                     </span>
                     <h3 className="mt-6 text-xl font-semibold tracking-tight text-navy">{service.name}</h3>
-                    <p className="mt-2 text-[15px] leading-relaxed text-body">{service.text}</p>
+                    <p className="mt-2 leading-relaxed text-body">{service.text}</p>
                     {service.note && (
                       <p className="mt-3 flex gap-2 text-sm leading-snug text-brand-700">
                         <ShieldCheckIcon
@@ -108,20 +108,20 @@ function PlanIllustration() {
   return (
     <div
       aria-hidden="true"
-      className="mt-8 rounded-2xl bg-surface p-4 ring-1 ring-line md:mt-0 md:self-center"
+      className="mt-8 rounded-2xl bg-surface p-4 ring-1 ring-line lg:mt-0 lg:self-center"
     >
-      <div className="flex items-center justify-between text-[11px] font-medium text-muted">
+      <div className="flex items-center justify-between text-xs font-medium text-muted">
         <span>Procurement plan</span>
         <span>Q1 · Q2 · Q3</span>
       </div>
       <div className="mt-3 grid gap-2.5">
         {rows.map((row, i) => (
-          <div key={row.label} className="grid grid-cols-[4.5rem_1fr] items-center gap-2">
-            <span className="text-[11px] text-muted">{row.label}</span>
+          <div key={row.label} className="grid grid-cols-[5rem_1fr] items-center gap-2">
+            <span className="text-xs text-muted">{row.label}</span>
             <span className="relative h-2.5 rounded-full bg-white ring-1 ring-line">
               <span
                 className={cn(
-                  "absolute inset-y-0 rounded-full transition-[width] duration-700 ease-out-strong",
+                  "absolute inset-y-0 rounded-full",
                   i === 3
                     ? "bg-gradient-to-r from-brand-400 to-sky"
                     : "bg-gradient-to-r from-brand-500 to-brand-400",
@@ -142,18 +142,20 @@ function MilestoneIllustration() {
   return (
     <div
       aria-hidden="true"
-      className="mt-8 rounded-2xl bg-surface p-4 ring-1 ring-line md:mt-0 md:self-center"
+      className="mt-8 rounded-2xl bg-surface p-4 ring-1 ring-line lg:mt-0 lg:self-center"
     >
-      <div className="flex items-center justify-between text-[11px] font-medium text-muted">
+      <div className="flex items-center justify-between text-xs font-medium text-muted">
         <span>Contract milestones</span>
         <span className="rounded-full bg-leaf/70 px-2 py-0.5 text-navy">On track</span>
       </div>
+      {/* Each step is 3rem wide, so the track runs exactly from the first dot's centre to the last
+          (1.75rem in from each side), and progress reaches the current step, three quarters along. */}
       <div className="relative mt-5 px-1">
-        <span className="absolute top-[7px] right-2 left-2 h-0.5 rounded-full bg-line" />
-        <span className="absolute top-[7px] left-2 h-0.5 w-[62%] rounded-full bg-gradient-to-r from-brand-500 to-brand-400" />
+        <span className="absolute top-[7px] right-7 left-7 h-0.5 rounded-full bg-line" />
+        <span className="absolute top-[7px] left-7 h-0.5 w-[calc((100%-3.5rem)*0.75)] rounded-full bg-gradient-to-r from-brand-500 to-brand-400" />
         <ol className="relative flex justify-between">
           {steps.map((step, i) => (
-            <li key={step} className="flex flex-col items-center gap-2">
+            <li key={step} className="flex w-12 flex-col items-center gap-2 whitespace-nowrap">
               <span
                 className={cn(
                   "size-4 rounded-full ring-4 ring-surface",
@@ -164,7 +166,7 @@ function MilestoneIllustration() {
                       : "bg-white outline-1 outline-line",
                 )}
               />
-              <span className="text-[10.5px] text-muted">{step}</span>
+              <span className="text-xs text-muted">{step}</span>
             </li>
           ))}
         </ol>

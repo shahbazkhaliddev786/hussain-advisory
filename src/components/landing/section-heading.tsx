@@ -26,7 +26,7 @@ export function SectionHeading({
           "inline-flex items-center gap-2 rounded-full px-3 py-1 text-sm font-medium",
           dark
             ? "bg-white/10 text-brand-100 ring-1 ring-white/15"
-            : "bg-white text-brand-700 shadow-[0_1px_2px_rgb(16_40_80/0.06)] ring-1 ring-brand-100",
+            : "bg-white text-brand-700 shadow-hairline ring-1 ring-brand-100",
         )}
       >
         <span aria-hidden="true" className={cn("size-1.5 rounded-full", dark ? "bg-leaf" : "bg-brand-500")} />

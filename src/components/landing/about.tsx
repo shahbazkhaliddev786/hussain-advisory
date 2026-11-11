@@ -49,7 +49,7 @@ export function About() {
               {advisor.values.map((value) => (
                 <li
                   key={value}
-                  className="rounded-full bg-white px-3.5 py-1.5 text-sm font-medium text-navy shadow-[0_1px_2px_rgb(16_40_80/0.06)] ring-1 ring-line"
+                  className="rounded-full bg-white px-3.5 py-1.5 text-sm font-medium text-navy shadow-hairline ring-1 ring-line"
                 >
                   {value}
                 </li>
@@ -77,7 +77,7 @@ function Portrait() {
         aria-hidden="true"
         className="absolute -inset-6 -z-10 rounded-[3rem] bg-[radial-gradient(60%_60%_at_30%_20%,rgb(84_138_210/0.35),transparent),radial-gradient(50%_50%_at_80%_90%,rgb(252_222_126/0.45),transparent)] blur-2xl"
       />
-      <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem] bg-navy shadow-[0_30px_70px_-30px_rgb(11_52_89/0.45)] ring-1 ring-white">
+      <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem] bg-navy shadow-raised ring-1 ring-white">
         <Image
           src={portrait}
           alt={`Portrait of ${advisor.name}`}
@@ -85,12 +85,12 @@ function Portrait() {
           sizes="(min-width: 480px) 28rem, 100vw"
           className="size-full object-cover object-top"
         />
-        <div className="absolute inset-x-4 bottom-4 rounded-2xl border border-white/70 bg-white/75 p-4 shadow-[0_10px_30px_-12px_rgb(11_52_89/0.35)] backdrop-blur-xl">
+        <div className="absolute inset-x-4 bottom-4 rounded-2xl border border-white/70 bg-white/75 p-4 shadow-float backdrop-blur-xl">
           <p className="font-semibold text-navy">{advisor.name}</p>
           <p className="text-sm text-muted">{advisor.role}</p>
         </div>
       </div>
-      <div className="absolute -top-4 -right-4 hidden rounded-2xl bg-navy px-4 py-3 text-white shadow-[0_18px_40px_-18px_rgb(11_52_89/0.8)] sm:block">
+      <div className="absolute -top-4 -right-4 hidden rounded-2xl bg-navy px-4 py-3 text-white shadow-float sm:block">
         <p className="text-2xl font-semibold tracking-tight">30+</p>
         <p className="text-xs text-brand-200">years of experience</p>
       </div>

@@ -4,7 +4,10 @@ import { Reveal } from "@/components/landing/reveal"
 import { SectionHeading } from "@/components/landing/section-heading"
 import { faqs, site } from "@/content/landing"
 
-/** Native disclosure elements: no JavaScript, and opening one answer closes the others. */
+/**
+ * Native disclosure elements: no JavaScript, and opening one answer closes the others.
+ * Where the browser supports ::details-content, answers expand and collapse (see `disclosure` in globals.css).
+ */
 export function Faq() {
   return (
     <section id="faq" aria-labelledby="faq-title" className="bg-surface py-24 md:py-32">
@@ -32,15 +35,22 @@ export function Faq() {
 
         <Reveal delay={100} className="grid content-start gap-3">
           {faqs.map((faq, i) => (
-            <details key={faq.question} name="faq" open={i === 0} className="group rounded-2xl card">
+            <details
+              key={faq.question}
+              name="faq"
+              open={i === 0}
+              className="group disclosure rounded-2xl card"
+            >
               <summary className="flex cursor-pointer list-none items-center justify-between gap-4 rounded-2xl px-6 py-5 font-semibold text-navy [&::-webkit-details-marker]:hidden">
                 {faq.question}
                 <ChevronDownIcon
                   aria-hidden="true"
-                  className="size-5 shrink-0 text-muted transition-transform duration-(--duration-quick) group-open:rotate-180"
+                  className="size-5 shrink-0 text-muted transition-transform duration-(--duration-fast) ease-(--ease-smooth-out) group-open:rotate-180 motion-reduce:transition-none"
                 />
               </summary>
-              <p className="-mt-1 px-6 pb-5 text-[15px] leading-relaxed text-body">{faq.answer}</p>
+              <div className="disclosure-body">
+                <p className="px-6 pb-5 leading-relaxed text-body">{faq.answer}</p>
+              </div>
             </details>
           ))}
         </Reveal>

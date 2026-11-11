@@ -38,14 +38,14 @@ export function Reveal({
           {
             autoAlpha: 1,
             y: 0,
-            duration: 0.8,
+            duration: 0.6,
             delay: delay / 1000,
             ease: "power3.out",
             clearProps: "transform,visibility",
             scrollTrigger: { trigger: element, start: "top 92%", once: true },
           },
         )
-      mm.add("(prefers-reduced-motion: no-preference)", () => void reveal(24))
+      mm.add("(prefers-reduced-motion: no-preference)", () => void reveal(16))
       mm.add("(prefers-reduced-motion: reduce)", () => void reveal(0))
       return () => mm.revert()
     },

@@ -53,7 +53,7 @@ export function Contact() {
             <p className="text-sm font-semibold text-white">Helpful to include</p>
             <ul className="mt-4 grid gap-3">
               {helpful.map((item) => (
-                <li key={item} className="flex items-start gap-3 text-[15px] text-brand-200">
+                <li key={item} className="flex items-start gap-3 text-brand-200">
                   <span className="mt-0.5 grid size-5 shrink-0 place-items-center rounded-full bg-white/10 text-leaf">
                     <CheckIcon aria-hidden="true" strokeWidth={3} className="size-3" />
                   </span>
@@ -65,7 +65,7 @@ export function Contact() {
         </Reveal>
 
         <Reveal delay={100}>
-          <div className="rounded-3xl bg-white p-6 shadow-[0_40px_90px_-30px_rgb(0_0_0/0.55)] ring-1 ring-white/20 sm:p-8">
+          <div className="rounded-3xl bg-white p-6 shadow-overlay ring-1 ring-white/20 sm:p-8">
             <ContactForm />
           </div>
         </Reveal>

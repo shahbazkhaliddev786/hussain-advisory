@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useCallback, useLayoutEffect, useRef, useState } from "react"
 import { ArrowRightIcon, CheckIcon } from "lucide-react"
 import { Tabs } from "radix-ui"
 
@@ -12,6 +12,16 @@ import { stages } from "@/content/landing"
 /** The procurement cycle as tabs: pick a stage to see where PASA helps. Arrow keys move between stages. */
 export function Approach() {
   const [active, setActive] = useState(stages[0].id)
+  // Which way the panel enters: forward (from the right) or back (from the left), like the pill.
+  const [direction, setDirection] = useState<"forward" | "back">("forward")
+  const { listRef, pillRef } = useSlidingPill(active)
+
+  function select(next: string) {
+    const from = stages.findIndex((stage) => stage.id === active)
+    const to = stages.findIndex((stage) => stage.id === next)
+    setDirection(to < from ? "back" : "forward")
+    setActive(next)
+  }
 
   return (
     <section id="approach" aria-labelledby="approach-title" className="py-24 md:py-32">
@@ -25,18 +35,27 @@ export function Approach() {
           />
         </Reveal>
 
-        <Tabs.Root value={active} onValueChange={setActive} className="mt-12">
+        <Tabs.Root value={active} onValueChange={select} className="mt-12 md:mt-16">
           <Tabs.List
+            ref={listRef}
             aria-label="Stages of the procurement cycle"
-            className="mx-auto grid w-full max-w-3xl grid-cols-3 gap-1 rounded-2xl bg-surface p-1.5 ring-1 ring-line sm:flex sm:w-fit sm:rounded-full"
+            className="group/tabs relative mx-auto grid w-full max-w-3xl grid-cols-3 gap-1 rounded-2xl bg-surface p-1.5 ring-1 ring-line sm:flex sm:w-fit sm:rounded-full"
           >
+            {/* The white pill slides to the selected stage. Until it is measured, the selected tab paints its own background. */}
+            <span
+              ref={pillRef}
+              aria-hidden="true"
+              className="pointer-events-none absolute top-0 left-0 rounded-xl bg-white opacity-0 shadow-tab transition-[translate,width,height] duration-(--duration-fast) ease-(--ease-smooth-out) group-data-[pill=ready]/tabs:opacity-100 motion-reduce:transition-none sm:rounded-full"
+            />
             {stages.map((stage, i) => (
               <Tabs.Trigger
                 key={stage.id}
                 value={stage.id}
-                className="cursor-pointer rounded-xl px-4 py-2.5 text-sm font-medium text-muted transition-[background-color,color,box-shadow] duration-(--duration-quick) hover:text-navy data-[state=active]:bg-white data-[state=active]:text-navy data-[state=active]:shadow-[0_1px_2px_rgb(16_40_80/0.08),0_4px_12px_-4px_rgb(16_40_80/0.15)] sm:rounded-full"
+                className="relative cursor-pointer rounded-xl px-4 py-2.5 text-sm font-medium text-muted transition-colors duration-(--duration-fast) ease-(--ease-smooth-out) hover:text-navy data-[state=active]:bg-white data-[state=active]:text-navy data-[state=active]:shadow-tab group-data-[pill=ready]/tabs:data-[state=active]:bg-transparent group-data-[pill=ready]/tabs:data-[state=active]:shadow-none sm:rounded-full"
               >
-                <span className="mr-1.5 text-xs text-muted tabular-nums">{i + 1}</span>
+                <span aria-hidden="true" className="mr-1.5 text-xs text-muted tabular-nums">
+                  {i + 1}
+                </span>
                 {stage.name}
               </Tabs.Trigger>
             ))}
@@ -46,7 +65,8 @@ export function Approach() {
             <Tabs.Content
               key={stage.id}
               value={stage.id}
-              className="mt-8 animate-in duration-(--duration-slow) ease-(--ease-smooth-out) fade-in-0 slide-in-from-bottom-2 focus-visible:outline-offset-8 motion-reduce:animate-none"
+              data-direction={direction}
+              className="mt-8 animate-in duration-(--duration-fast) ease-(--ease-smooth-out) fade-in-0 focus-visible:outline-offset-8 data-[direction=back]:slide-in-from-left-2 data-[direction=forward]:slide-in-from-right-2 motion-reduce:animate-none"
             >
               <div className="grid gap-10 rounded-3xl p-7 card md:grid-cols-[1.1fr_1fr] md:p-12">
                 <div>
@@ -76,7 +96,7 @@ export function Approach() {
                   <p className="text-sm font-semibold text-navy">How PASA helps</p>
                   <ul className="mt-5 grid gap-4">
                     {stage.help.map((item) => (
-                      <li key={item} className="flex items-start gap-3 text-[15px] text-body">
+                      <li key={item} className="flex items-start gap-3 text-body">
                         <span className="mt-0.5 grid size-5 shrink-0 place-items-center rounded-full bg-brand-500 text-white">
                           <CheckIcon aria-hidden="true" strokeWidth={3} className="size-3" />
                         </span>
@@ -104,4 +124,49 @@ export function Approach() {
       </div>
     </section>
   )
+}
+
+/**
+ * Moves the white pill onto the selected tab (the transitions.dev "tabs sliding" pattern).
+ * The first placement and any resize snap into place; choosing another stage slides.
+ */
+function useSlidingPill(active: string) {
+  const listRef = useRef<HTMLDivElement>(null)
+  const pillRef = useRef<HTMLSpanElement>(null)
+  const firstRun = useRef(true)
+
+  const place = useCallback((animate: boolean) => {
+    const list = listRef.current
+    const pill = pillRef.current
+    const tab = list?.querySelector<HTMLElement>('[role="tab"][data-state="active"]')
+    if (!list || !pill || !tab) return
+    if (!animate) pill.style.transition = "none"
+    pill.style.width = `${tab.offsetWidth}px`
+    pill.style.height = `${tab.offsetHeight}px`
+    pill.style.translate = `${tab.offsetLeft}px ${tab.offsetTop}px`
+    if (!animate) {
+      void pill.offsetWidth // commit the snap before the transition comes back
+      pill.style.transition = ""
+    }
+    list.dataset.pill = "ready"
+  }, [])
+
+  useLayoutEffect(() => {
+    const list = listRef.current
+    if (!list) return
+    place(false)
+    const observer = new ResizeObserver(() => place(false))
+    observer.observe(list)
+    return () => observer.disconnect()
+  }, [place])
+
+  useLayoutEffect(() => {
+    if (firstRun.current) {
+      firstRun.current = false
+      return
+    }
+    place(true)
+  }, [active, place])
+
+  return { listRef, pillRef }
 }
