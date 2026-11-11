@@ -56,8 +56,10 @@ Sentence case everywhere, including buttons.
 
 ## Motion
 
-- Hero: badge, buttons and the cycle card fade up on load. The headline and intro do not animate, so they paint immediately.
-- Sections below the fold fade up once as they enter the viewport (`landing/reveal.tsx`). Content is visible without JavaScript.
+- Motion tokens (`--duration-*`, `--ease-smooth-out`, from the transitions.dev scale) live in `globals.css`; new transitions use them.
+- Hero: badge and buttons fade up on load. The cycle card (`landing/cycle-card.tsx`) runs a GSAP timeline: panel rises, the six stages stagger in, the connector draws left to right, then the detail chips. The headline and intro do not animate, so they paint immediately.
+- Sections below the fold fade up once via GSAP ScrollTrigger (`landing/reveal.tsx`). Content is visible without JavaScript; reduced motion keeps a plain fade.
+- Service cards carry a pointer-following glow (`landing/spotlight-card.tsx`, adapted from React Bits), mouse and pen only.
 - Hover: cards lift 1–4px, arrows nudge 2px. Floating chips drift slowly.
 - `prefers-reduced-motion` turns off movement and smooth scrolling.
 

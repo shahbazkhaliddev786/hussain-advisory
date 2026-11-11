@@ -26,6 +26,14 @@
 
   --ease-out-strong: cubic-bezier(0.23, 1, 0.32, 1);
 
+  /* Motion tokens, from the transitions.dev scale: one vocabulary for every transition */
+  --ease-smooth-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --duration-micro: 80ms;
+  --duration-quick: 150ms;
+  --duration-fast: 250ms;
+  --duration-medium: 350ms;
+  --duration-slow: 400ms;
+
   --animate-float: float 8s ease-in-out infinite;
   --animate-float-late: float 8s ease-in-out 2.5s infinite;
 
@@ -132,4 +140,32 @@
   background:
     linear-gradient(#ffffff, #ffffff) padding-box,
     linear-gradient(135deg, #548ad2, #72aee4 50%, #fcde7e) border-box;
+}
+
+/* Pointer-following light on a card (React Bits "spotlight card"); mouse and pen only */
+@utility spotlight-card {
+  position: relative;
+  isolation: isolate;
+}
+
+.spotlight-card__glow {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  opacity: 0;
+  background: radial-gradient(
+    22rem circle at var(--mx, 50%) var(--my, 50%),
+    rgb(114 174 228 / 0.2),
+    rgb(252 222 126 / 0.1) 45%,
+    transparent 70%
+  );
+  transition: opacity var(--duration-medium) var(--ease-smooth-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .spotlight-card:hover .spotlight-card__glow {
+    opacity: 1;
+  }
 }

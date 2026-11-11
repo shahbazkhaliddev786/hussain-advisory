@@ -9,6 +9,7 @@ import {
 } from "lucide-react"
 
 import { Reveal } from "@/components/landing/reveal"
+import { SpotlightCard } from "@/components/landing/spotlight-card"
 import { SectionHeading } from "@/components/landing/section-heading"
 import { services, type ServiceIcon } from "@/content/landing"
 import { cn } from "@/lib/utils"
@@ -51,9 +52,9 @@ export function Services() {
             const wide = i === 0 || i === 3
             return (
               <Reveal key={service.name} delay={(i % 2) * 80} className={spans[i]}>
-                <article
+                <SpotlightCard
                   className={cn(
-                    "group relative h-full overflow-hidden rounded-3xl p-7 card transition-[transform,box-shadow] duration-300 ease-out-strong hover:-translate-y-1 hover:shadow-[0_1px_2px_rgb(16_40_80/0.04),0_24px_48px_-24px_rgb(44_95_176/0.45)] md:p-8",
+                    "group relative h-full overflow-hidden rounded-3xl p-7 card transition-[transform,box-shadow] duration-(--duration-fast) ease-(--ease-smooth-out) hover:-translate-y-1 hover:shadow-[0_1px_2px_rgb(16_40_80/0.04),0_24px_48px_-24px_rgb(44_95_176/0.45)] md:p-8",
                     wide && "md:grid md:grid-cols-[1fr_0.9fr] md:items-center md:gap-8",
                   )}
                 >
@@ -86,7 +87,7 @@ export function Services() {
                   </div>
                   {i === 0 && <PlanIllustration />}
                   {i === 3 && <MilestoneIllustration />}
-                </article>
+                </SpotlightCard>
               </Reveal>
             )
           })}

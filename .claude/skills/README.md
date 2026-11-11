@@ -14,6 +14,10 @@ Curated, vendored Claude Code skills for building the PASA site. Each folder kee
 | `web-interface-guidelines` | Vercel's interface rules as a `file:line` compliance review. | [vercel-labs/web-interface-guidelines](https://github.com/vercel-labs/web-interface-guidelines) `434b7f913646` | MIT |
 | `fixing-accessibility` · `fixing-metadata` · `fixing-motion-performance` | Fast, minimal-diff fixers for a11y, SEO/OG metadata, and jank. | [ibelick/ui-skills](https://github.com/ibelick/ui-skills) `59193a75432e` | MIT |
 | `web-quality-audit` · `accessibility` · `seo` · `performance` · `core-web-vitals` · `best-practices` | Evidence-led Lighthouse/WCAG 2.2/CWV audits. Folder names must stay as-is; they cross-link via `../<name>/`. | [addyosmani/web-quality-skills](https://github.com/addyosmani/web-quality-skills) `afa8da942115` | MIT |
+| `gsap-*` (8 skills) | GSAP core, timelines, ScrollTrigger, React (`useGSAP`), plugins, performance. | [greensock/gsap-skills](https://github.com/greensock/gsap-skills) | MIT |
+| `transitions-dev` · `transitions-polish` | Motion-token scale and transition recipes; audit and tune existing motion. | [Jakubantalik/transitions.dev](https://github.com/Jakubantalik/transitions.dev) | see each LICENSE.txt |
+| `extract-design` | Extract design tokens from a URL (`npx designlang <url>`). | [Manavarya09/design-extract](https://github.com/Manavarya09/design-extract) | MIT |
+| `design-taste-frontend` | Anti-template frontend taste rules. Vendored without its `assets/`, `scripts/` and Stop hook; its photo, contact and one-section-per-screen rules do not apply here. | [Leonxlnx/taste-skill](https://github.com/Leonxlnx/taste-skill) | MIT |
 
 ## Where they disagree, and the rule we follow
 

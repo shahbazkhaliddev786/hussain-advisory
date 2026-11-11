@@ -1,13 +1,18 @@
 "use client"
 
-import { useEffect, useRef } from "react"
+import { useRef } from "react"
+import gsap from "gsap"
+import { ScrollTrigger } from "gsap/ScrollTrigger"
+import { useGSAP } from "@gsap/react"
 
 import { cn } from "@/lib/utils"
 
+gsap.registerPlugin(useGSAP, ScrollTrigger)
+
 /**
- * Fades content up as it scrolls into view. Content is visible in the server HTML;
- * only elements below the fold are hidden, after hydration, until they come into view.
- * Nothing moves for people who prefer reduced motion.
+ * Fades content up as it scrolls into view (GSAP ScrollTrigger). Content is visible in the
+ * server HTML; only elements below the fold are hidden, after hydration, until they come into
+ * view. Reduced motion keeps a plain fade and drops the movement.
  */
 export function Reveal({
   children,
@@ -20,33 +25,35 @@ export function Reveal({
 }) {
   const ref = useRef<HTMLDivElement>(null)
 
-  useEffect(() => {
-    const element = ref.current
-    if (!element || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return
-    if (element.getBoundingClientRect().top < window.innerHeight * 0.92) return
+  useGSAP(
+    () => {
+      const element = ref.current
+      if (!element || element.getBoundingClientRect().top < window.innerHeight * 0.92) return
 
-    element.dataset.reveal = "hidden"
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (!entry.isIntersecting) return
-        element.dataset.reveal = "shown"
-        observer.disconnect()
-      },
-      { rootMargin: "0px 0px -8% 0px" },
-    )
-    observer.observe(element)
-    return () => observer.disconnect()
-  }, [])
+      const mm = gsap.matchMedia()
+      const reveal = (y: number) =>
+        gsap.fromTo(
+          element,
+          { autoAlpha: 0, y },
+          {
+            autoAlpha: 1,
+            y: 0,
+            duration: 0.8,
+            delay: delay / 1000,
+            ease: "power3.out",
+            clearProps: "transform,visibility",
+            scrollTrigger: { trigger: element, start: "top 92%", once: true },
+          },
+        )
+      mm.add("(prefers-reduced-motion: no-preference)", () => void reveal(24))
+      mm.add("(prefers-reduced-motion: reduce)", () => void reveal(0))
+      return () => mm.revert()
+    },
+    { scope: ref },
+  )
 
   return (
-    <div
-      ref={ref}
-      style={{ transitionDelay: delay ? `${delay}ms` : undefined }}
-      className={cn(
-        "transition-[opacity,transform] duration-700 ease-out-strong data-[reveal=hidden]:translate-y-6 data-[reveal=hidden]:opacity-0",
-        className,
-      )}
-    >
+    <div ref={ref} className={cn(className)}>
       {children}
     </div>
   )
