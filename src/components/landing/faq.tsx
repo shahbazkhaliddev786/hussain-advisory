@@ -37,7 +37,7 @@ export function Faq() {
                 {faq.question}
                 <ChevronDownIcon
                   aria-hidden="true"
-                  className="size-5 shrink-0 text-muted transition-transform duration-200 group-open:rotate-180"
+                  className="size-5 shrink-0 text-muted transition-transform duration-(--duration-quick) group-open:rotate-180"
                 />
               </summary>
               <p className="-mt-1 px-6 pb-5 text-[15px] leading-relaxed text-body">{faq.answer}</p>

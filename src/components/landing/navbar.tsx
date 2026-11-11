@@ -45,7 +45,7 @@ export function Navbar() {
       <nav
         aria-label="Main"
         className={cn(
-          "mx-auto max-w-6xl rounded-2xl border transition-[background-color,border-color,box-shadow] duration-300",
+          "mx-auto max-w-6xl rounded-2xl border transition-[background-color,border-color,box-shadow] duration-(--duration-medium)",
           solid
             ? "border-line/80 bg-white/80 shadow-[0_10px_30px_-14px_rgb(11_52_89/0.25)] backdrop-blur-xl backdrop-saturate-150"
             : "border-transparent bg-transparent",
@@ -80,7 +80,7 @@ export function Navbar() {
             <Button asChild size="sm" className="hidden sm:inline-flex">
               <a href="#contact">
                 Get in touch
-                <ArrowRightIcon className="transition-transform duration-200 group-hover/button:translate-x-0.5" />
+                <ArrowRightIcon className="transition-transform duration-(--duration-quick) group-hover/button:translate-x-0.5" />
               </a>
             </Button>
             <Button
@@ -100,7 +100,7 @@ export function Navbar() {
         <div
           id="mobile-menu"
           hidden={!open}
-          className="animate-in border-t border-line px-2 pt-2 pb-3 duration-200 fade-in-0 slide-in-from-top-1 md:hidden"
+          className="animate-in border-t border-line px-2 pt-2 pb-3 duration-(--duration-quick) fade-in-0 slide-in-from-top-1 md:hidden"
         >
           <ul className="grid">
             {nav.map((link) => (

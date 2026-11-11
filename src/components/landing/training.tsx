@@ -47,7 +47,7 @@ export function Training() {
                 <Button asChild>
                   <a href="#contact">
                     Register interest
-                    <ArrowRightIcon className="transition-transform duration-200 group-hover/button:translate-x-0.5" />
+                    <ArrowRightIcon className="transition-transform duration-(--duration-quick) group-hover/button:translate-x-0.5" />
                   </a>
                 </Button>
               </div>
@@ -85,7 +85,7 @@ export function Training() {
                 <Button asChild variant="light">
                   <a href="#contact">
                     Plan training for your team
-                    <ArrowRightIcon className="transition-transform duration-200 group-hover/button:translate-x-0.5" />
+                    <ArrowRightIcon className="transition-transform duration-(--duration-quick) group-hover/button:translate-x-0.5" />
                   </a>
                 </Button>
               </div>

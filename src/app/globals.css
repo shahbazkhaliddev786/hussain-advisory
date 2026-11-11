@@ -24,7 +24,7 @@
   --color-sky: #72aee4;
   --color-leaf: #fcde7e;
 
-  --ease-out-strong: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-out-strong: cubic-bezier(0.22, 1, 0.36, 1);
 
   /* Motion tokens, from the transitions.dev scale: one vocabulary for every transition */
   --ease-smooth-out: cubic-bezier(0.22, 1, 0.36, 1);

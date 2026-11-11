@@ -38,7 +38,7 @@ export function Hero() {
           <Button asChild size="lg">
             <a href="#contact">
               Request advisory support
-              <ArrowRightIcon className="transition-transform duration-200 group-hover/button:translate-x-0.5" />
+              <ArrowRightIcon className="transition-transform duration-(--duration-quick) group-hover/button:translate-x-0.5" />
             </a>
           </Button>
           <Button asChild size="lg" variant="secondary">

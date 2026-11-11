@@ -34,7 +34,7 @@ export function Approach() {
               <Tabs.Trigger
                 key={stage.id}
                 value={stage.id}
-                className="cursor-pointer rounded-xl px-4 py-2.5 text-sm font-medium text-muted transition-[background-color,color,box-shadow] duration-200 hover:text-navy data-[state=active]:bg-white data-[state=active]:text-navy data-[state=active]:shadow-[0_1px_2px_rgb(16_40_80/0.08),0_4px_12px_-4px_rgb(16_40_80/0.15)] sm:rounded-full"
+                className="cursor-pointer rounded-xl px-4 py-2.5 text-sm font-medium text-muted transition-[background-color,color,box-shadow] duration-(--duration-quick) hover:text-navy data-[state=active]:bg-white data-[state=active]:text-navy data-[state=active]:shadow-[0_1px_2px_rgb(16_40_80/0.08),0_4px_12px_-4px_rgb(16_40_80/0.15)] sm:rounded-full"
               >
                 <span className="mr-1.5 text-xs text-muted tabular-nums">{i + 1}</span>
                 {stage.name}
@@ -46,7 +46,7 @@ export function Approach() {
             <Tabs.Content
               key={stage.id}
               value={stage.id}
-              className="mt-8 animate-in duration-500 ease-out-strong fade-in-0 slide-in-from-bottom-2 focus-visible:outline-offset-8 motion-reduce:animate-none"
+              className="mt-8 animate-in duration-(--duration-slow) ease-(--ease-smooth-out) fade-in-0 slide-in-from-bottom-2 focus-visible:outline-offset-8 motion-reduce:animate-none"
             >
               <div className="grid gap-10 rounded-3xl p-7 card md:grid-cols-[1.1fr_1fr] md:p-12">
                 <div>
@@ -67,7 +67,7 @@ export function Approach() {
                     Talk to Naeem about this stage
                     <ArrowRightIcon
                       aria-hidden="true"
-                      className="size-4 transition-transform duration-200 group-hover:translate-x-0.5"
+                      className="size-4 transition-transform duration-(--duration-quick) group-hover:translate-x-0.5"
                     />
                   </a>
                 </div>
